@@ -45,15 +45,12 @@ export default function SearchNavItem( { handleSearch }) {
     return (
         <>
         <form onSubmit={handleSubmit}>
-            <input id="search-box" type="input"
+            <input className="search-user-input" id="search-box" type="input"
                 placeholder="Search user"
                 value= {searchUserInput}
                 onChange={handleInputChange}
                 autoComplete="off"
             />
-            <button className="search-button" type="submit">
-                <i className="fas fa-search"></i> 
-            </button>
         </form>
 
         </>

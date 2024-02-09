@@ -14,12 +14,17 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  min-width: 320px;
+  min-width: 800px;
   min-height: 100vh;
-  background-color: #f0d552;
+  background-color: #fdfbef;
 
 }
+
+body, .navbar {
+  margin: 0;
+  padding: 0;
+}
+
 
 /* Headings styling */
 h1, h2 {

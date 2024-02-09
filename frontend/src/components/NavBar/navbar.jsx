@@ -31,13 +31,13 @@ const Navbar = ({stateChange}) => {
   return (
   <>
   <div className="navbar-container">
-    <div data-testid="navbar" id="navbar">
+    <div className="navbar">
     
-      <div className="logo-nav-item"> 
+      {/* <div className="logo-nav-item"> 
         <Link to={`/`}>
           <h3>AB</h3>
           </Link>
-      </div>
+      </div> */}
 
       <div data-testId="searchItem" className="search-nav-item">
         <SearchNavItem 
@@ -53,33 +53,38 @@ const Navbar = ({stateChange}) => {
         }
       </div>
 
-      <div className="home-nav-item">
-        <HomeNavItem />
+      <div className="acebook">
+        acebook
       </div>
-      
-      {token ? 
-
-        <>
-        <div className="logout-nav-item"> 
-          <LogoutNavItem />
-        </div>
-        <div className="User-nav-item">
-          <UserNavItem 
-            user={user}
-          />
-        </div>
-        </>
-          :
-          <>
-        <div className="login-nav-item"> 
-          <LoginNavItem />
-        </div>
-        <div className="signup-nav-item"> 
-          <SignupNavItem />
+      <div className="navbar-right">
+        <div className="home-nav-item">
+          <HomeNavItem />
         </div>
         
-        </>
-      }
+        {token ? 
+
+          <>
+          <div className="logout-nav-item"> 
+            <LogoutNavItem />
+          </div>
+          <div className="User-nav-item">
+            <UserNavItem 
+              user={user}
+            />
+          </div>
+          </>
+            :
+            <>
+          <div className="login-nav-item"> 
+            <LoginNavItem />
+          </div>
+          <div className="signup-nav-item"> 
+            <SignupNavItem />
+          </div>
+          
+          </>
+        }
+      </div>
     </div>
   </div>
 </>
