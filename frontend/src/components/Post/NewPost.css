@@ -1,35 +1,38 @@
 @import '../../../node_modules/@fortawesome/fontawesome-free/css/all.css';
 
 .new-post-container {
-    width: 55%;
     display: flex;
     flex-direction: column;
-    border: 5px solid #00843D;
-    border-radius: 20px;
+    border: solid 1px rgb(179, 179, 179);
+    border-radius: 10px;
     margin: 10px;
     background-color: white;
-    box-shadow: 5px 5px 5px rgba(128, 128, 128, 0.454);
+    box-shadow: 2px;
     padding: 10px;
+    width: 55%;
 }
 
 .text-area-container{
     padding: 10px;
-    
 
 }
 
 .new-post-text-area {
-    border-radius: 20px;
+    border-radius: 10px;
     resize: none;
     padding: 10px;
     box-sizing: content-box;  
 }
 
 .image-button-container {
-    padding: 5px
+    display: flex;
+    justify-content: center;
+    padding: 5px;
 }
 
 .post-button-container{
+    display: flex;
+    justify-content: center;
     padding: 5px;
 
 }
@@ -37,4 +40,10 @@
 .post-button {
     padding-left: 20px;
     padding-right: 20px;
+    height: 25px;
+    width: 100px;
+    background-color: rgb(179, 179, 179);
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
 }

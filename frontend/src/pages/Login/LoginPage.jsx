@@ -7,15 +7,8 @@ import "./LoginPage.css";
 export const LoginPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [signupSuccess, setSignupSuccess] = useState(
-        localStorage.getItem("signupSuccess") === "true"
-    );
-    const navigate = useNavigate();
 
-    useEffect(() => {
-        // Clear the signup success flag in local storage
-        localStorage.removeItem("signupSuccess");
-    }, []);
+    const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -40,38 +33,41 @@ export const LoginPage = () => {
     };
 
     return (
-        <>
-            <Navbar />
-            <h2>Login</h2>
-            {signupSuccess && (
-                <p className="success-message">
-                    Sign up successful! You can now login.
-                </p>
-            )}
+    <>
+        <Navbar />
+
+        <div className="login-page">
             <form onSubmit={handleSubmit}>
-                <label htmlFor="email"></label>
-                <input
-                    id="email"
-                    type="text"
-                    placeholder="Email"
-                    value={email}
-                    onChange={handleEmailChange}
-                />
-                <label htmlFor="password"></label>
-                <input
-                    id="password"
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={handlePasswordChange}
-                />
-                <input
-                    role="submit-button"
-                    id="submit"
-                    type="submit"
-                    value="Submit"
-                />
+                <div className="email-input">
+                    <label htmlFor="email"></label>
+                    <input
+                        id="email"
+                        type="text"
+                        placeholder="Email"
+                        value={email}
+                        onChange={handleEmailChange}
+                    />
+                </div>
+                <div className="password-input">
+                    <label htmlFor="password"></label>
+                    <input
+                        id="password"
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={handlePasswordChange}
+                    />
+                </div>
+                <div className="login-button-container">
+                    <input
+                        role="submit-button"
+                        id="submit"
+                        type="submit"
+                        value="login"
+                    />
+                </div>
             </form>
-        </>
+        </div>
+    </>
     );
 };

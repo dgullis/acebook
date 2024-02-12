@@ -1,6 +1,68 @@
-#password, #email, #submit, #username {
-    border: 2px solid #00843D;
-    border-radius: 10px 10px 10px 10px;
-    font-size:large;
-    margin: 8px;
+.signup-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%
+}
+
+.signup-username-input {
+    padding: 10px;
+    padding-top: 100px;
+}
+
+.signup-username-input input{
+    height: 30px;
+    width: 200px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #fdfbef;
+    border: solid 1px rgb(179, 179, 179);
+    font-size: 18px;
+}
+
+.signup-email-input {
+    padding: 10px;
+    
+}
+
+.signup-email-input input{
+    height: 30px;
+    width: 200px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #fdfbef;
+    border: solid 1px rgb(179, 179, 179);
+    font-size: 18px;
+}
+
+.signup-password-input {
+    padding: 10px;
+}
+
+.signup-password-input input{
+    height: 30px;
+    width: 200px;
+    text-align: center;
+    border-radius: 5px;
+    background-color: #fdfbef;
+    border: solid 1px rgb(179, 179, 179);
+    font-size: 18px;
+}
+
+
+
+.signup-button-container {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.signup-button-container #submit{
+    height: 34px;
+    width: 200px;
+    background-color: rgb(179, 179, 179);
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
 }

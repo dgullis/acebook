@@ -38,10 +38,12 @@ export const SignupPage = () => {
     };
 
     return (
-        <>
-            <Navbar />
-            <h2>Sign up</h2>
-            <form onSubmit={handleSubmit}>
+    <>
+        <Navbar />
+        <div className="signup-page">
+        
+        <form onSubmit={handleSubmit}>
+            <div className="signup-username-input">
                 <label htmlFor="username"></label>
                 <input
                     id="username"
@@ -50,7 +52,9 @@ export const SignupPage = () => {
                     value={username}
                     onChange={handleUsernameChange}
                 />
+            </div>
 
+            <div className="signup-email-input">
                 <label htmlFor="email"></label>
                 <input
                     id="email"
@@ -59,7 +63,9 @@ export const SignupPage = () => {
                     value={email}
                     onChange={handleEmailChange}
                 />
+            </div>
 
+            <div className="signup-password-input">
                 <label htmlFor="password"></label>
                 <input
                     placeholder="Password"
@@ -68,13 +74,17 @@ export const SignupPage = () => {
                     value={password}
                     onChange={handlePasswordChange}
                 />
+            </div>
+            <div className="signup-button-container">
                 <input
                     role="submit-button"
                     id="submit"
                     type="submit"
-                    value="Submit"
+                    value="Sign Up"
                 />
-            </form>
-        </>
+            </div>
+        </form>
+        </div>
+    </>
     );
 };
