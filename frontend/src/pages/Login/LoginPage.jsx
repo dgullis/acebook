@@ -35,38 +35,39 @@ export const LoginPage = () => {
     return (
     <>
         <Navbar />
-
-        <div className="login-page">
-            <form onSubmit={handleSubmit}>
-                <div className="email-input">
-                    <label htmlFor="email"></label>
-                    <input
-                        id="email"
-                        type="text"
-                        placeholder="Email"
-                        value={email}
-                        onChange={handleEmailChange}
-                    />
-                </div>
-                <div className="password-input">
-                    <label htmlFor="password"></label>
-                    <input
-                        id="password"
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={handlePasswordChange}
-                    />
-                </div>
-                <div className="login-button-container">
-                    <input
-                        role="submit-button"
-                        id="submit"
-                        type="submit"
-                        value="login"
-                    />
-                </div>
-            </form>
+        <div className="login-page-container">
+            <div className="login-page">
+                <form onSubmit={handleSubmit}>
+                    <div className="email-input">
+                        <label htmlFor="email"></label>
+                        <input
+                            id="email"
+                            type="text"
+                            placeholder="Email"
+                            value={email}
+                            onChange={handleEmailChange}
+                        />
+                    </div>
+                    <div className="password-input">
+                        <label htmlFor="password"></label>
+                        <input
+                            id="password"
+                            type="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={handlePasswordChange}
+                        />
+                    </div>
+                    <div className="login-button-container">
+                        <input
+                            role="submit-button"
+                            id="submit"
+                            type="submit"
+                            value="login"
+                        />
+                    </div>
+                </form>
+            </div>
         </div>
     </>
     );

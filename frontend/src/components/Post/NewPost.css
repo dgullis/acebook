@@ -3,8 +3,8 @@
 .new-post-container {
     display: flex;
     flex-direction: column;
-    border: solid 1px rgb(179, 179, 179);
-    border-radius: 10px;
+    
+    border-radius: 5px;
     margin: 10px;
     background-color: white;
     box-shadow: 2px;
@@ -17,6 +17,14 @@
 
 }
 
+.new-post-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+
 .new-post-text-area {
     border-radius: 10px;
     resize: none;
@@ -24,10 +32,30 @@
     box-sizing: content-box;  
 }
 
-.image-button-container {
-    display: flex;
-    justify-content: center;
+/* .image-button-container {
     padding: 5px;
+} */
+
+/* .image-button-container button{
+    /* height: 25px;
+    width: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #e74d3cea;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-size: 14px; */
+ */
+
+.image-button-container button i{
+    padding: 5px;
+}
+
+.image-button-container button p{
+    color: white
 }
 
 .post-button-container{
@@ -42,8 +70,32 @@
     padding-right: 20px;
     height: 25px;
     width: 100px;
-    background-color: rgb(179, 179, 179);
+    background-color: #e74d3cea;
+    color: white;
     border: none;
     border-radius: 5px;
     font-size: 14px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #e74d3cea;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    height: 15px;
+    display: inline-block;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.custom-file-upload i {
+    padding: 5px
 }

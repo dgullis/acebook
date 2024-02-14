@@ -18,18 +18,23 @@ export const HomePage = () => {
     return (
         <>
             <Navbar />
-            <div className="home">
-                <h1>Welcome to Acebook!</h1>
-                <a href="/signup">
-                    <button id="sign-up-button" type="button">
-                        Sign up
-                    </button>
-                </a>
-                <a href="/login">
-                    <button id="log-in-button" type="button">
-                        Log in
-                    </button>
-                </a>
+            <div className="homepage">
+                <div className="homepage-header">
+                </div>
+                <div className="homepage-signup-button-container">
+                    <a href="/signup">
+                        <button id="sign-up-button" type="button">
+                            Sign up
+                        </button>
+                    </a>
+                </div>
+                <div className="homepage-login-button-container">
+                    <a href="/login">
+                        <button id="log-in-button" type="button">
+                            Log in
+                        </button>
+                    </a>
+                </div>
             </div>
         </>
     );

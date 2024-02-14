@@ -40,50 +40,53 @@ export const SignupPage = () => {
     return (
     <>
         <Navbar />
-        <div className="signup-page">
-        
-        <form onSubmit={handleSubmit}>
-            <div className="signup-username-input">
-                <label htmlFor="username"></label>
-                <input
-                    id="username"
-                    placeholder="Username"
-                    type="text"
-                    value={username}
-                    onChange={handleUsernameChange}
-                />
-            </div>
 
-            <div className="signup-email-input">
-                <label htmlFor="email"></label>
-                <input
-                    id="email"
-                    placeholder="Email"
-                    type="email"
-                    value={email}
-                    onChange={handleEmailChange}
-                />
-            </div>
+        <div className="signup-page-container">
+            <div className="signup-page">
+            
+            <form onSubmit={handleSubmit}>
+                <div className="signup-username-input">
+                    <label htmlFor="username"></label>
+                    <input
+                        id="username"
+                        placeholder="Username"
+                        type="text"
+                        value={username}
+                        onChange={handleUsernameChange}
+                    />
+                </div>
 
-            <div className="signup-password-input">
-                <label htmlFor="password"></label>
-                <input
-                    placeholder="Password"
-                    id="password"
-                    type="password"
-                    value={password}
-                    onChange={handlePasswordChange}
-                />
+                <div className="signup-email-input">
+                    <label htmlFor="email"></label>
+                    <input
+                        id="email"
+                        placeholder="Email"
+                        type="email"
+                        value={email}
+                        onChange={handleEmailChange}
+                    />
+                </div>
+
+                <div className="signup-password-input">
+                    <label htmlFor="password"></label>
+                    <input
+                        placeholder="Password"
+                        id="password"
+                        type="password"
+                        value={password}
+                        onChange={handlePasswordChange}
+                    />
+                </div>
+                <div className="signup-button-container">
+                    <input
+                        role="submit-button"
+                        id="submit"
+                        type="submit"
+                        value="Sign Up"
+                    />
+                </div>
+            </form>
             </div>
-            <div className="signup-button-container">
-                <input
-                    role="submit-button"
-                    id="submit"
-                    type="submit"
-                    value="Sign Up"
-                />
-            </div>
-        </form>
         </div>
     </>
     );

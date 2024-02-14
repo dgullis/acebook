@@ -12,14 +12,15 @@
     background-color: rgb(255, 255, 255);
     padding: 8px;
     margin: 10px;
-    border: 5px solid #00843d;
-    border-radius: 20px 20px 20px 20px;
-    box-shadow: 5px 5px 20px grey;
+    border: solid 1px rgb(179, 179, 179);
+    border-radius: 10px;
+    box-shadow: 2px;
 }
 
 .post-header {
     display: flex;
     flex-direction: row;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.177);
 }
 
 .post-user-image-container {
@@ -82,12 +83,20 @@
 }
 
 .like-button-container {
-    padding: 10px 5px 10px 10px
+    padding: 10px 5px 10px 10px;
+    border: none;
+}
+
+.like-button-container button{
+    background: none;
+    border: none;
+    border-radius: 15px;
 }
 
 .like-number {
     padding: 0px
 }
+
 .delete-post-button-container {
     display: flex;
     flex-direction: column;
@@ -98,6 +107,9 @@
 
 .delete-post-button-container button {
     padding: 5px;
+    background: none;
+    border: none;
+
 }
 
 .add-comment-container {

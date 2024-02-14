@@ -59,30 +59,43 @@ const NewPost = ( {token, userId, toggleStateChange} ) => {
                         className="new-post-text-area"
                         name="text"
                         value = {postMessage}
+                        placeholder="make a new post..."
                         onChange={(message) => setPostMessage(message.target.value)}
                     >
                     </textarea>
                 </div>
 
+                <div className="new-post-options">
                 <div className="image-button-container">
-                    <button type="button" onClick={handleUploadImageClick}>
-                        <i className="fa-solid fa-image"></i>
-                    </button>
+                        <label htmlFor="file-upload" className="custom-file-upload">
+                            <i className="fa-solid fa-image"></i>
+                            upload image
+                        </label>
+                        <input className="newpost-choose-file"
+                            id="file-upload"
+                            type="file" 
+                            name="file"
+                            accept="image/png, image/jpeg" 
+                            onChange={handleFileChange}
+                        />
+                    </div>
+                    {/* <div className="image-button-container">
+                        <button onClick={handleUploadImageClick}>
+                            <i className="fa-solid fa-image"></i>
+                            <p>upload image</p>
+                        </button>
+                    </div> */}
+                    <div className="post-button-container">
+                        <button type='submit' className="post-button">Post</button>
+                    </div>
                 </div>
 
                 {uploadImage &&  
                     <>
-                    <input 
-                        type="file" 
-                        name="file"
-                        accept="image/png, image/jpeg" 
-                        onChange={handleFileChange}
-                    />
+                    
                     </>
                 }
-                <div className="post-button-container">
-                    <button type='submit' className="post-button">Post</button>
-                </div>
+                
                 {errorMessage && errorMessage}
             </form>
         </div>

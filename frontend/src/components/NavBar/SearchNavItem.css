@@ -1,21 +1,12 @@
 @import '../../../node_modules/@fortawesome/fontawesome-free/css/all.css';
 
-.search-button {
-    border: 2px solid #F7D117;
-    border-radius: 10px 10px 10px 10px;
-    font-size:large;
-    margin: 5px;
-}
 
-#search-box {
-
-}
 
 .search-user-input {
-    background-color: rgba(215, 215, 164, 0.958);
+    background-color: transparent;
     font-size: large;
     border: none;
-    color: black;
+    color: #ecf0f1de;
 }
 
 .search-user-input:focus {

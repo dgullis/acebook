@@ -22,5 +22,15 @@
     padding: 5px 5px 10px 5px;
 }
 
-.submit-comment-button {
+.submit-comment-button-container button{
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 25px;
+    width: 100px;
+    background-color: #e74d3cea;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    
 }
