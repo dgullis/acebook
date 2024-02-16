@@ -3,7 +3,6 @@
 .new-post-container {
     display: flex;
     flex-direction: column;
-    
     border-radius: 5px;
     margin: 10px;
     background-color: white;
@@ -12,51 +11,67 @@
     width: 55%;
 }
 
-.text-area-container{
+.text-area-container {
+    position: relative;
+    display: block;
     padding: 10px;
-
+    margin-left: 20px;
+    border-bottom:1px black;
 }
 
 .new-post-options {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
+    border-top: 1px solid rgba(128, 128, 128, 0.224);
+    padding-top: 5px;
 }
 
 
 .new-post-text-area {
-    border-radius: 10px;
+    width: auto;
+    border-radius: 5px;
+    border: none;
+    height: 60px;
     resize: none;
     padding: 10px;
     box-sizing: content-box;  
+    overflow: hidden;
+    padding-left: 50px;
 }
 
-/* .image-button-container {
-    padding: 5px;
-} */
+.new-post-text-area::placeholder {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
 
-/* .image-button-container button{
-    /* height: 25px;
-    width: 150px;
+
+.circle {
+    position: absolute;
+    top: 0px;
+    left: -20px;
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border-radius: 50%;
+    border: 5px solid white;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.circle img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+.image-button-container {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    background-color: #e74d3cea;
-    border-radius: 5px;
-    border: none;
-    color: white;
-    font-size: 14px; */
- */
 
-.image-button-container button i{
-    padding: 5px;
 }
 
-.image-button-container button p{
-    color: white
-}
 
 .post-button-container{
     display: flex;
@@ -94,8 +109,14 @@ input[type="file"] {
     display: inline-block;
     padding: 5px;
     cursor: pointer;
+    margin: 5px;
+    padding-right: 10px;
 }
 
-.custom-file-upload i {
-    padding: 5px
+.custom-file-upload i{
+    padding-right: 5px;
+    padding-left: 5px;
 }
+
+
+

@@ -12,3 +12,7 @@
 .search-user-input:focus {
     outline: none
 }
+
+.search-user-input::placeholder {
+    color: #ecf0f1de
+}

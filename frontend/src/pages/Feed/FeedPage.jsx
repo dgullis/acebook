@@ -60,6 +60,7 @@ export const FeedPage = () => {
                 <NewPost
                     token={token}
                     userId={user._id}
+					userImg={user.image}
                     toggleStateChange={toggleStateChange}
                 />
             </div>

@@ -31,9 +31,15 @@ body, .navbar {
     align-items: center;
 }
 
-.acebook {
+.acebook-logo {
+    position: absolute;
+    left:  50%;
+    transform: translateX(-50%);
     font-weight: bold;
     font-size: 20px;
+    letter-spacing: 2px;
+    color: white;
+
 }
 
 .login-nav-item {

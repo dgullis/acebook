@@ -32,12 +32,6 @@ const Navbar = ({stateChange}) => {
   <>
   <div className="navbar-container">
     <div className="navbar">
-    
-      {/* <div className="logo-nav-item"> 
-        <Link to={`/`}>
-          <h3>AB</h3>
-          </Link>
-      </div> */}
 
       <div data-testId="searchItem" className="search-nav-item">
         <SearchNavItem 
@@ -53,9 +47,10 @@ const Navbar = ({stateChange}) => {
         }
       </div>
 
-      <div className="acebook">
-        acebook
+      <div className="acebook-logo">
+        aceBook
       </div>
+
       <div className="navbar-right">
         <div className="home-nav-item">
           <HomeNavItem />

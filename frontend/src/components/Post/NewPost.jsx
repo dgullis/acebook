@@ -3,7 +3,7 @@ import { createPost } from '../../services/posts'
 import './NewPost.css'
 
 
-const NewPost = ( {token, userId, toggleStateChange} ) => {
+const NewPost = ( {token, userId, toggleStateChange, userImg} ) => {
     const [postMessage, setPostMessage] = useState('');
     const [file, setFile] = useState(null)
     const [uploadImage, setuploadImage] = useState(false)
@@ -55,6 +55,9 @@ const NewPost = ( {token, userId, toggleStateChange} ) => {
         <div className="new-post-container">
             <form onSubmit={handleSubmit}>
                 <div className="text-area-container">
+                <div className="circle">
+                    <img src={userImg}></img>
+                </div>
                     <textarea
                         className="new-post-text-area"
                         name="text"
@@ -78,13 +81,8 @@ const NewPost = ( {token, userId, toggleStateChange} ) => {
                             accept="image/png, image/jpeg" 
                             onChange={handleFileChange}
                         />
-                    </div>
-                    {/* <div className="image-button-container">
-                        <button onClick={handleUploadImageClick}>
-                            <i className="fa-solid fa-image"></i>
-                            <p>upload image</p>
-                        </button>
-                    </div> */}
+                </div>
+            
                     <div className="post-button-container">
                         <button type='submit' className="post-button">Post</button>
                     </div>
