@@ -128,6 +128,13 @@ const Post = (props) => {
                             </div>
                         </div>
                             <div className="delete-post-button-container">
+                                <EditButton
+                                        postID={props.post._id}
+                                        handleEdit={handleEdit}
+                                        showButton={isPostOwner}
+                                        onEdit={props.onEdit}
+                                        edits={props.edits}
+                                    />  
                                 <DeleteButton
                                     postID={props.post._id}
                                     token={props.token}
@@ -135,13 +142,7 @@ const Post = (props) => {
                                     onDelete={props.onDelete}
                                     showButton={isPostOwner}
                                 />
-                                <EditButton
-                                    postID={props.post._id}
-                                    handleEdit={handleEdit}
-                                    showButton={isPostOwner}
-                                    onEdit={props.onEdit}
-                                    edits={props.edits}
-                                />
+
                             </div>
                     </div>
 

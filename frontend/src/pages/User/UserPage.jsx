@@ -91,7 +91,7 @@ export const UserPage = () => {
                         {loggedInUser._id === user._id && 
                         <div className="notifications-container">
                             <div className="notifications-header">
-                                <p>notifications </p>
+                                <p>Notifications </p>
                             </div>
 
                             { user.notifications &&
@@ -115,7 +115,7 @@ export const UserPage = () => {
                         }
                         <div className="friends-container">
                             <div className="friends-header">
-                                <p>friends </p>
+                                <p>Friends </p>
                             </div>
                             <Friends 
                                 friends={user.friends}
@@ -125,7 +125,7 @@ export const UserPage = () => {
                     <div className="user-page-right">
 
                         <div className="posts-header">
-                            <p> posts </p>
+                            <p> Posts </p>
                         </div>
 
                         <div className="posts">

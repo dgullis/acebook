@@ -7,21 +7,27 @@ import "./LoginPage.css";
 export const LoginPage = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [notice, setNotice] = useState("")
 
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        try {
-            const data = await login(email, password);
-            window.localStorage.setItem("token", data.token);
-            window.localStorage.setItem("user", JSON.stringify(data.user));
-            navigate("/posts");
-        } catch (err) {
-            console.error(err);
-            alert(err);
-            navigate("/login");
+        if(!email || !password) {
+            setNotice("Email or password not entered")
+        } else {
+            try {
+                const data = await login(email, password);
+                window.localStorage.setItem("token", data.token);
+                window.localStorage.setItem("user", JSON.stringify(data.user));
+                setNotice("Login successfull")
+                navigate("/posts");
+            } catch (err) {
+                console.error(err);
+                setNotice(err.message);
+            }
         }
+
     };
 
     const handleEmailChange = (event) => {
@@ -65,6 +71,9 @@ export const LoginPage = () => {
                             type="submit"
                             value="login"
                         />
+                    </div>
+                    <div className="login-notice">
+                        {notice && notice}
                     </div>
                 </form>
             </div>

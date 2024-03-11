@@ -8,6 +8,7 @@ export const SignupPage = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [notice, setNotice] = useState("")
     const navigate = useNavigate();
     const defaultUserImage = "kangaroo-face.png"
 
@@ -17,11 +18,10 @@ export const SignupPage = () => {
             await signup(username, email, password, defaultUserImage);
             // Set the signup success flag in local storage
             localStorage.setItem("signupSuccess", "true");
+            setNotice("Signup sucessfull")
             navigate("/login");
         } catch (err) {
-            console.error(err);
-            navigate("/signup");
-            alert(err);
+            setNotice(err.message);
         }
     };
 
@@ -85,6 +85,9 @@ export const SignupPage = () => {
                         value="Sign Up"
                     />
                 </div>
+                <div className="signup-notice">
+                        {notice && notice}
+                    </div>
             </form>
             </div>
         </div>

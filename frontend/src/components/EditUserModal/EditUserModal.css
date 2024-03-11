@@ -6,6 +6,11 @@ body.active-modal {
     padding: 8px;
     margin: 10px;
     font-size: 18px;
+    background-color: #e74d3cea;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
 }
 
 .modal, .overlay {
@@ -25,6 +30,7 @@ body.active-modal {
 .modal-content {
     display: flex;
     flex-direction: column;
+    align-items: center;
     position: absolute;
     top: 40%;
     left: 50%;
@@ -49,6 +55,10 @@ body.active-modal {
     border-bottom: 1px solid rgba(128, 128, 128, 0.224);
 }
 
+.header{
+    display: flex;
+    justify-content: center;
+}
 .user-image-container {
     display: flex;
     flex-direction: column;
@@ -58,25 +68,46 @@ body.active-modal {
     border-bottom: 1px solid rgba(128, 128, 128, 0.224);
 }
 
+.image-container img{
+    max-width: 200px;
+    max-height: 200px;
+    object-fit: cover;
+}
+
 .bio {
     padding: 5px;
     border-bottom: 1px solid rgba(128, 128, 128, 0.224);
 }
 
-.button-container {
+.edit-button-container {
     padding: 5px
 }
+
+.edit-button {
+    color: white;
+    background-color: #e74d3cea;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 12px;
+}
+
+
 
 .close-modal {
     position: absolute;
     top: 10px;
     right: 10px;
     padding: 5px 7px;
+    background-color: #e74d3cea;
+    border-radius: 5px;
+    border: none;
+    color: white;
 }
 
 .profile-picture img{
     max-height: 100px;
     min-height: 100px;
-    border-radius: 100%;
+    border-radius: 50%;
 }
 

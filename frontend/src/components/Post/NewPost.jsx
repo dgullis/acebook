@@ -72,7 +72,7 @@ const NewPost = ( {token, userId, toggleStateChange, userImg} ) => {
                 <div className="image-button-container">
                         <label htmlFor="file-upload" className="custom-file-upload">
                             <i className="fa-solid fa-image"></i>
-                            upload image
+                            Upload Image
                         </label>
                         <input className="newpost-choose-file"
                             id="file-upload"

@@ -3,8 +3,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%; /* Adjust the height as needed */
-    padding-top: 100px;
+    height: 100vh; /* Adjust the height as needed */
+
 }
 
 .signup-page {
@@ -13,8 +13,12 @@
     align-items: center;
     background-color: #ffffff;
     width: fit-content;
-    padding: 40px 20px 40px 20px;
+    padding: 100px 60px 100px 60px;
     border-radius: 5px;
+}
+
+.signup-page form {
+    justify-content: center;
 }
 
 .signup-username-input {
@@ -62,7 +66,6 @@
 }
 
 
-
 .signup-button-container {
     padding: 10px;
     display: flex;
@@ -78,4 +81,13 @@
     border: none;
     border-radius: 5px;
     font-size: 18px;
+}
+
+.signup-notice {
+    display: flex;
+    justify-content: center;
+    max-width: 226px;
+    font-weight: bold;
+    text-align: center;
+    color: rgba(114, 1, 1, 0.776)
 }

@@ -19,25 +19,25 @@ const create = async (req, res) => {
 	const defaultUserImage = req.body.defaultUserImage;
 
 	if (!password || !username || !email) {
-		return res.status(400).json({ message: "Dang! One of the boxes is empty" });
+		return res.status(400).json({ message: "All fields required" });
 	}
 
 	if (!checkPassword(password)) {
 		return res.status(400).json({
 			message:
-				"Ya haven't chucked in a proper password, mate. Gotta be at least 8 characters long, with an uppercase letter, a lowercase letter, a number, and a ripper special character.",
+				"Password requirements not met",
 		});
 	}
 	if (!checkEmail(email)) {
 		return res.status(400).json({
-			message: "You haven't entered a valid email.",
+			message: "invalid email address.",
 		});
 	}
 
 	try {
 		const existingUser = await User.findOne({ username });
 		if (existingUser) {
-			return res.status(409).json({ message: "Sorry cobber, but someone's already bagged that username." });
+			return res.status(409).json({ message: "Username already exists. Please choose another or login" });
 		}
 	} catch (error) {
 		console.error(error);
@@ -46,7 +46,7 @@ const create = async (req, res) => {
 	try {
 		const existingEmail = await User.findOne({ email });
 		if (existingEmail) {
-			return res.status(409).json({ message: "Looks like someone's already snatched up that email address, mate." });
+			return res.status(409).json({ message: "Email already exists. Please choose another or login" });
 		}
 	} catch (error) {
 		console.error(error);

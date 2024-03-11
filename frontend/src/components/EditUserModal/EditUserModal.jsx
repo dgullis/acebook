@@ -53,8 +53,8 @@ export default function EditUserModal( {username, image, handleImageUpdate, hand
                             <div className="image-container">
                                 <img src={image} alt="Profile Picture" />
                             </div>
-                            <div className="button-container">
-                            <button className="button"
+                            <div className="edit-button-container">
+                            <button className="edit-button"
                                 onClick={toggleEditPictureModal}
                             >edit</button>
                             </div>
@@ -81,8 +81,8 @@ export default function EditUserModal( {username, image, handleImageUpdate, hand
                         <div className="header">
                             bio
                         </div>
-                        <div className="button-container">
-                            <button className="button"
+                        <div className="edit-button-container">
+                            <button className="edit-button"
                                 onClick={toggleEditBioModal}
                             >
                                 edit

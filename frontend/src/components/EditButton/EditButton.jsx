@@ -15,6 +15,6 @@ const EditButton = (props) => {
 			console.error("Error handling edit:", error);
 		}
 	};
-	return props.showButton ? <button onClick={handleClick}>edit</button> : null;
+	return props.showButton ? <button onClick={handleClick}>edit post</button> : null;
 };
 export default EditButton;
