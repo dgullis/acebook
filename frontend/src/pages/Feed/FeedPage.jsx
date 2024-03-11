@@ -51,7 +51,7 @@ export const FeedPage = () => {
 
 
     return (
-        <div className="feedpage">
+        <div className="feedpage-container">
             <div className="navbar">
                 <Navbar />
             </div>

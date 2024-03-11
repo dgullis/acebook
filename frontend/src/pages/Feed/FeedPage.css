@@ -1,12 +1,14 @@
-.feedpage {
+.feedpage-container {
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;
+    align-items: center;
+        
 }
 
-.feedpage-new-post-container {
+/* .new-post-container {
     display: flex;
     justify-content: center;
-}
+} */
 
 .feedpage-posts-container {
     display: flex;

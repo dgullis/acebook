@@ -8,6 +8,7 @@ const NewPost = ( {token, userId, toggleStateChange, userImg} ) => {
     const [file, setFile] = useState(null)
     const [uploadImage, setuploadImage] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
+    const [uploadedImage, setUploadedImage] = useState(null)
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -21,10 +22,8 @@ const NewPost = ( {token, userId, toggleStateChange, userImg} ) => {
             }
         }
         if(postMessage){
-            
             formData.append('postMessage', postMessage)
         }
-        console.log("userId", userId)
         formData.append("userId", userId)
 
         createPost(token, formData)
@@ -34,6 +33,7 @@ const NewPost = ( {token, userId, toggleStateChange, userImg} ) => {
                 setFile(null)
                 setErrorMessage('')
                 setuploadImage(false)
+                setUploadedImage(null)
                 toggleStateChange()
 
             })
@@ -48,6 +48,11 @@ const NewPost = ( {token, userId, toggleStateChange, userImg} ) => {
 
     const handleFileChange = (e) => {
         setFile(e.target.files[0])
+        setUploadedImage(URL.createObjectURL(e.target.files[0]))
+    }
+
+    const closeImage = () => {
+        setUploadedImage(null)
     }
 
     
@@ -66,6 +71,13 @@ const NewPost = ( {token, userId, toggleStateChange, userImg} ) => {
                         onChange={(message) => setPostMessage(message.target.value)}
                     >
                     </textarea>
+                    {uploadedImage &&
+                    <div className="uploaded-image-container">
+                        <img src={uploadedImage} />
+                    </div>
+                    }
+                    
+                    
                 </div>
 
                 <div className="new-post-options">
@@ -81,18 +93,18 @@ const NewPost = ( {token, userId, toggleStateChange, userImg} ) => {
                             accept="image/png, image/jpeg" 
                             onChange={handleFileChange}
                         />
+                        {uploadedImage && 
+                        <div className="delete-image-button-container">
+                            <button type='button' className="delete-image-button" onClick={closeImage}>Delete Image</button>
+                        </div>
+                        }
+
                 </div>
             
                     <div className="post-button-container">
                         <button type='submit' className="post-button">Post</button>
                     </div>
                 </div>
-
-                {uploadImage &&  
-                    <>
-                    
-                    </>
-                }
                 
                 {errorMessage && errorMessage}
             </form>
