@@ -3,7 +3,7 @@ const path = require('path')
 
 const storage = multer.diskStorage({
 	destination: (req, file, cb) => {
-		cb(null,'/Users/dangullis/Desktop/makers/projects/acebook-kanagroo/frontend/public/images')
+		cb(null,'/Users/dangullis/Desktop/Projects/acebook/frontend/public/images/')
 	},
 	filename: (req, file, cb) => {
 		cb(null, Date.now() + '-' + file.originalname)
@@ -15,3 +15,4 @@ const upload = multer({
 })
 
 module.exports = upload;
+

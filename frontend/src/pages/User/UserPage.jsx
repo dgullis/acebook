@@ -30,7 +30,8 @@ export const UserPage = () => {
                 .then((data) => {
                     setUser(data.user);
                     setToken(data.token);
-                    window.localStorage.setItem("token", data.token);                })
+                    window.localStorage.setItem("token", data.token)
+                })
                 .catch((err) => {
                     console.error(err);
                 });
@@ -82,6 +83,7 @@ export const UserPage = () => {
                             <EditUserModal 
                                 username={username}
                                 image={user.image}
+                                bio={user.bio}
                                 triggerStateChange={triggerStateChange}
                             />
 

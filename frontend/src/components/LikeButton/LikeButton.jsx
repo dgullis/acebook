@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { createNotification } from "../../services/user";
 import { likePost } from "../../services/posts";
+import "./LikeButton.css"
 
 
 const LikeButton = (props) => {

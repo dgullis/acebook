@@ -5,10 +5,12 @@
     width: 90%;
 }
 
-.text-area {
+.add-comment-text-area {
     border-radius: 5px;
     resize: none;
-    padding: 5px
+    padding: 5px;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 14px;
 }
 
 .add-comment-container form {
@@ -26,7 +28,7 @@
     padding-left: 20px;
     padding-right: 20px;
     height: 25px;
-    width: 100px;
+    width: 140px;
     background-color: #e74d3cea;
     color: white;
     border: none;

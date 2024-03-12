@@ -5,7 +5,7 @@ import EditProfilePictureModal from "../EditProfilePictureModal/EditProfilePictu
 import EditBioModal from "../EditBioModal/EditBioModal";
 import User from "../User/User";
 
-export default function EditUserModal( {username, image, handleImageUpdate, handleBioUpdate, triggerStateChange}) { 
+export default function EditUserModal( {username, image, handleImageUpdate, handleBioUpdate, triggerStateChange, bio}) { 
     const [modal, setModal] = useState(false)
     const [editPictureModal, setEditPictureModal] = useState(false)
     const [editBioModal, setEditBioModal] = useState(false)
@@ -26,37 +26,44 @@ export default function EditUserModal( {username, image, handleImageUpdate, hand
     return (
         <>
         <button 
-        onClick={toggleModal}
-        className="btn-modal">
-            Edit Profile
+            onClick={toggleModal}
+            className="btn-modal">
+            Edit profile
         </button>
 
         {modal && (
 
-            <div className="modal">
+            <div className="edit-user-modal">
             
                 <div 
                     onClick={toggleModal}
-                    className="overlay">
+                    className="edit-user-modal-overlay">
                 </div>
                 
-                <div className="modal-content">
+                <div className="edit-user-modal-content">
                     <div className="content-header">
-                        Edit Profile
+                        Edit profile
                     </div>
                     
                     <div className="profile-picture">
                         <div className="header">
-                        Profile Picture
+                        Profile picture
                         </div>
+
                         <div className="user-image-container">
                             <div className="image-container">
                                 <img src={image} alt="Profile Picture" />
                             </div>
                             <div className="edit-button-container">
-                            <button className="edit-button"
-                                onClick={toggleEditPictureModal}
-                            >edit</button>
+                                {editPictureModal ? (
+                                    null
+                                ) : (
+                                    <button className="edit-button"
+                                    onClick={toggleEditPictureModal}
+                                >Edit</button>
+                                )} 
+
+                                
                             </div>
 
                             {editPictureModal && 
@@ -67,10 +74,10 @@ export default function EditUserModal( {username, image, handleImageUpdate, hand
                                     handleImageUpdate={handleImageUpdate}
                                     triggerStateChange={triggerStateChange}
                                 /> 
-                                <div className="button-container">
+                                <div className="back-button-container">
                                     <button
                                         onClick={toggleEditPictureModal}
-                                    >close</button>
+                                    >Back</button>
                                 </div>
                             </div>
                             }
@@ -79,28 +86,33 @@ export default function EditUserModal( {username, image, handleImageUpdate, hand
                     
                     <div className="bio">
                         <div className="header">
-                            bio
+                            Bio
                         </div>
-                        <div className="edit-button-container">
+
+                        {editBioModal ? (null) : (
+                            <div className="edit-button-container">
                             <button className="edit-button"
                                 onClick={toggleEditBioModal}
                             >
-                                edit
+                                Edit
                             </button>
                         </div>
+                        ) }
+                        
 
                         {editBioModal && 
                             <div>
                             <EditBioModal 
                                 username={username}
+                                bio={bio}
                                 toggleEditBioModal={toggleEditBioModal}
                                 handleBioUpdate={handleBioUpdate}
                                 triggerStateChange={triggerStateChange}
                             />
                             
-                            <div className="button-container">
+                            <div className="back-button-container">
                                 <button onClick={toggleEditBioModal}>
-                                    close
+                                Back
                                 </button>
                             </div>
                             </div>

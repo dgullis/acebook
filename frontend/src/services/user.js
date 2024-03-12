@@ -52,6 +52,8 @@ export const uploadImage = async (formData, username) => {
 		body: formData,
 	};
 
+	console.log("body formData", formData)
+
 	let response = await fetch(
 		`${BACKEND_URL}/users/${username}/upload`,
 		requestOptions

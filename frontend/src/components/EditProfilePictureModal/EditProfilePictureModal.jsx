@@ -1,15 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./EditProfilePictureModal.css"
 import { uploadImage } from "../../services/user";
 
 
 export default function EditProfilePictureModal({image, username, toggleEditPictureModal, triggerStateChange}) {
     const [modal, setModal] = useState(false)
-    const [file, setFile] = useState()
+    const [file, setFile] = useState(null)
+    const [errorMessage, setErrorMessage] = useState("")
 
     const handleUpload = () => {
         const formData = new FormData();
-        formData.append('file', file)
+        if(file){
+            formData.append('file', file)
+        } else {
+            console.log("error rror")
+                return setErrorMessage("No file selected")
+            }
+        
+            console.log("here we go")
         uploadImage(formData, username)
             .then(res => res.json())
             .then(data => {
@@ -17,6 +25,8 @@ export default function EditProfilePictureModal({image, username, toggleEditPict
                 const user = JSON.parse(window.localStorage.getItem("user"))
                 user.image = data.image
                 window.localStorage.setItem("user", JSON.stringify(user));
+                setFile(null)
+                setErrorMessage('')
                 toggleEditPictureModal()
                 triggerStateChange()
             });
@@ -25,26 +35,35 @@ export default function EditProfilePictureModal({image, username, toggleEditPict
     const toggleModal = () => {
         setModal(!modal)
     }
+    const handleFileChange = (e) => {
+        console.log("here first ")
+        setFile(e.target.files[0])
+    }
+
+    useEffect(() => {
+        if (file) {
+            handleUpload();
+        }
+    }, [file]); 
 
 
     return (
         <>
             <div className="upload-profile-piture-containter">
-                <div 
-                    onClick={toggleModal}
-                    className="">
-                </div>
 
             <div className="image-input">
-                <input 
+            <label htmlFor="file-upload" className="upload-profile-picture-custom-file-upload">
+            Choose image
+            </label>
+                <input
+                    id="file-upload"
+                    className="upload-profile-picture-choose-file" 
                     type="file" 
                     name="file" 
-                    onChange={e => setFile(e.target.files[0])}
-                    accept="image/jpeg, image/png"
+                    accept="image/png, image/jpeg" 
+                    onChange={handleFileChange}
                     />
-                <div className="upload-button-container">
-                    <button className="upload-button" onClick={handleUpload} >Upload</button>
-                </div>
+                
             </div>
                 
             </div>

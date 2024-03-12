@@ -53,7 +53,7 @@ export default function AddComment({ postId, toggleStateChange, post_userId, tri
 		<form onSubmit={submitComment}>
 			<div className="text-area-container">
 				<textarea
-					className="text-area"
+					className="add-comment-text-area"
 					type="text"
 					placeholder="make a new comment"
 					value={commentText}
@@ -61,7 +61,7 @@ export default function AddComment({ postId, toggleStateChange, post_userId, tri
 				/>
 			</div>
 			<div className="submit-comment-button-container">
-				<button className="submit-commit-button" type="submit">Comment</button>
+				<button className="submit-commit-button" type="submit">Post Comment</button>
 			</div>
 		</form>
 

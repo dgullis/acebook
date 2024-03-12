@@ -1,1 +1,6 @@
 @import '../../../node_modules/@fortawesome/fontawesome-free/css/all.css';
+
+
+.fa.fa-trash{
+    font-size: 20px;
+}
