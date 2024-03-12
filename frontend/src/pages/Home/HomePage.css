@@ -1,17 +1,26 @@
 
-.homepage{
+
+.homepage-container {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  min-height: 100vh;
 }
 
-.homepage-header {
-
+.homepage-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    width: fit-content;
+    padding: 100px 60px 100px 60px;
+    border-radius: 5px;
 }
+
+
 
 .homepage-signup-button-container {
   padding: 10px;
-  padding-top: 100px;
 
 }
 
@@ -30,6 +39,21 @@
 }
 
 .homepage-login-button-container button{
+  height: 34px;
+  width: 200px;
+  background-color: #e74d3cea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+
+}
+
+.homepage-about-button-container{
+  padding: 10px
+}
+
+.homepage-about-button-container button{
   height: 34px;
   width: 200px;
   background-color: #e74d3cea;
