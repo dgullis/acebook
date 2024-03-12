@@ -83,10 +83,11 @@
 .like-container {
     display: flex;
     flex-direction: row;
+
 }
 
 .like-button-container {
-    padding: 10px 5px 10px 10px;
+    padding: 10px 0px 10px 10px;
     border: none;
 }
 
@@ -97,7 +98,8 @@
 }
 
 .like-number {
-    padding: 0px
+    padding: 0px;
+    font-size: 12px;
 }
 
 .delete-post-button-container {
@@ -128,13 +130,41 @@
 }
 
 .more-comments-button-container {
-    padding: 5px
+    display: flex;
+    justify-content: flex-start;
+    padding: 5px;
 }
+
+.more-comments-button-container button {
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 25px;
+    width: 100px;
+    background-color: #e74d3cea;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
 
 .hide-comments-button-container {
-    padding: 5px
+    display: flex;
+    justify-content: flex-start;
+    padding: 5px;
 }
 
+.hide-comments-button-container button{
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 25px;
+    width: 100px;
+    background-color: #e74d3cea;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
 
 /* .post-article {
     display: flex;

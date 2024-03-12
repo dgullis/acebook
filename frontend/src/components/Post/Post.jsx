@@ -11,7 +11,8 @@ import { Link } from "react-router-dom";
 import { editPost } from "../../services/posts";
 
 const Post = (props) => {
-
+    const [user, setUser] = useState(null);
+    const [post, setPost] = useState(null)
     const [like, setLike] = useState(false);
     const [likes, setLikes] = useState(props.post.likes.length);
     const [showCommentBox, setShowCommentBox] = useState(false);
@@ -20,10 +21,17 @@ const Post = (props) => {
     const [deletes, setDeletes] = useState(false);
     const [postText, setPostText] = useState("")
     const [edittingPost, setEdittingPost] = useState(false)
+    const [userLikesPost, setUserLikesPost] = useState(false)
+    const [userIsOwner, setUserIsOwner] = useState(false)
+
 
     useEffect(() => {
-		setPostText(props.post.message);
-	}, [props.post.message]);
+        setUser(JSON.parse(window.localStorage.getItem("user")))
+        setPost(props.post)
+        setPostText(props.post.message);
+        user && setUserLikesPost(props.post.likes.includes(user._id))
+        user && setUserIsOwner(props.post.postedBy._id === user._id)
+	}, [props.post]);
 
 
     const handleDelete = () => {
@@ -34,9 +42,7 @@ const Post = (props) => {
         setEdittingPost(!edittingPost)
     }
 
-    const user = JSON.parse(window.localStorage.getItem("user"));
 
-    const isPostOwner = user._id && props.post.postedBy._id === user._id;
 
     const handleLikeUnlike = () => {
         setLike(!like);
@@ -67,7 +73,6 @@ const Post = (props) => {
 			postId: props.post._id,
 			postMessage: postText,
 		};
-
 		editPost(props.token, postData)
 			.then(() => {
 				props.toggleStateChange();
@@ -76,8 +81,7 @@ const Post = (props) => {
 				console.log("Error submitting post:", error);
 			});
         
-        handleEditPost()
-        
+        handleEditPost() 
 	};
 
     const sortedComments = props.post.comments.sort(
@@ -128,15 +132,16 @@ const Post = (props) => {
                         <div className="like-container">
                             <div className="like-button-container">
                             <LikeButton
-                                postID={props.post._id}
+                                postId={props.post._id}
                                 like={like}
+                                setUserLikesPost={setUserLikesPost}
                                 handleLikeUnlike={handleLikeUnlike}
-                                clicked={props.clicked}
+                                token={props.token}
                                 toggleStateChange={props.toggleStateChange}
                                 liked={props.liked}
+                                userLikesPost={userLikesPost}
                                 post_userId={props.postedBy._id}
                                 loggedInUsername={props.loggedInUsername}
-                                token={props.token}
                                 userId={props.userId}
                             />
                             </div>
@@ -145,19 +150,20 @@ const Post = (props) => {
                             </div>
                         </div>
                             <div className="delete-post-button-container">
-                                {isPostOwner && edittingPost ? (
-                                    <button onClick={handleSaveEditText}>save</button>
-                                ) : (
-                                    <button onClick={handleEditPost}>edit</button>
-                                )
-                                }
+                                {userIsOwner ? ( 
+                                    edittingPost ? (
+                                        <button onClick={handleSaveEditText}>save</button>
+                                    ) : (
+                                        <button onClick={handleEditPost}>edit</button>
+                                    )
+                                ) : null}
 
                                 <DeleteButton
                                     postID={props.post._id}
                                     token={props.token}
                                     handleDelete={handleDelete}
                                     onDelete={props.onDelete}
-                                    showButton={isPostOwner}
+                                    showButton={userIsOwner}
                                 />
 
                             </div>
@@ -187,7 +193,7 @@ const Post = (props) => {
 
                         <div className="more-comments-button-container">
                             {sortedComments.length > 1 && !showMoreComments && (
-                                <button onClick={showMoreCommentsClick}>...</button>
+                                <button onClick={showMoreCommentsClick}>see more</button>
                             )}
                         </div>
 

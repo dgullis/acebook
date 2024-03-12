@@ -72,21 +72,21 @@ const postComment = async (req, res) => {
 };
 
 const likePost = async (req, res) => {
-    const postID = req.body.postID;
-    const userID = req.body.userId
+    const postId = req.body.postId;
+    const userId = req.body.userId
 
-    console.log("be", userID)
+    // chekc to see if user had already liked the post
     const alreadyLiked = await Post.findOne({
-        _id: postID,
-        likes: userID,
+        _id: postId,
+        likes: userId,
     });
 
     if (alreadyLiked) {
         // User has already liked the post, remove the like
         try {
             const updatedPost = await Post.findOneAndUpdate(
-                { _id: postID },
-                { $pull: { likes: userID } },
+                { _id: postId },
+                { $pull: { likes: userId } },
                 { new: true }
             );
             res.status(200).json({ message: "Post unliked" });
@@ -100,8 +100,8 @@ const likePost = async (req, res) => {
         // User has not liked the post, add the like
         try {
             const updatedPost = await Post.findOneAndUpdate(
-                { _id: postID },
-                { $push: { likes: userID } },
+                { _id: postId },
+                { $push: { likes: userId } },
                 { new: true }
             );
             res.status(200).json({ message: "Post liked" });

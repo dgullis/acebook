@@ -24,11 +24,6 @@ export const FeedPage = () => {
 	const handlePostDelete = () => {
 		toggleStateChange();
 	};
-	const handlePostEdit = () => {
-		toggleStateChange();
-	};
-
-	const [edits, setEdits] = useState(false);
 
 	useEffect(() => {
 		if (token) {
@@ -68,7 +63,6 @@ export const FeedPage = () => {
             <div className="feedpage-posts-container">
                 {posts.map((post) => {
                     const liked = post.likes.includes(user._id);
-                    console.log(liked)
                     return (
                         <Post
                             key={post._id}
@@ -80,9 +74,6 @@ export const FeedPage = () => {
                             token={token}
                             liked={liked}
                             userId={user._id}
-							onEdit={handlePostEdit}
-							edits={edits}
-							setEdits={setEdits}
                         />
                     );
                 })}

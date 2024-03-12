@@ -115,3 +115,25 @@ export const deleteThePost = async (postId, token) => {
 		console.error("Error deleting post:", error);
 	}
 };
+
+export const likePost = async (token, postId, userId) => {
+    try {
+        const response = await fetch("http://localhost:3000/posts/likes", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + `${token}`,
+            },
+            body: JSON.stringify({ 
+                postId: postId,
+                userId: userId
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+    } catch (error) {
+        console.error("Error fetching data:", error);
+    }
+};

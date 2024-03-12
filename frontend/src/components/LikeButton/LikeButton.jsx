@@ -1,40 +1,20 @@
 import { useState, useEffect } from "react";
 import { createNotification } from "../../services/user";
+import { likePost } from "../../services/posts";
 
-const likeThePost = async (props) => {
-    console.log("service", props.postID)
-    try {
-        const response = await fetch("http://localhost:3000/posts/likes", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: "Bearer " + window.localStorage.getItem("token"),
-            },
-            body: JSON.stringify({ 
-                postID: props.postID,
-                userId: props.userId
-            }),
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-    } catch (error) {
-        console.error("Error fetching data:", error);
-    }
-};
 
 const LikeButton = (props) => {
-    const [like, setLike] = useState(props.liked);
+
 
     const handleClick = async () => {
         try {
-            await likeThePost(props);
-            setLike((prevLike) => !prevLike);
+            await likePost(props.token, props.postId, props.userId);
+            props.setUserLikesPost((previousState) => !previousState);
             props.handleLikeUnlike();
             props.toggleStateChange();
-            if (!like) {
+            if (!props.userLikesPost) {
                 try {
+                    console.log("hello")
                     const notificationResult = await createNotification({
                         username: props.loggedInUsername,
                         entity_userId: props.post_userId,
@@ -49,6 +29,7 @@ const LikeButton = (props) => {
                 }
             } else {
                 try {
+                    console.log("hello 2")
                     const notificationResult = await createNotification({
                         username: props.loggedInUsername,
                         entity_userId: props.post_userId,
@@ -69,7 +50,7 @@ const LikeButton = (props) => {
 
     return (
         <button onClick={handleClick}>
-            {props.liked ? (
+            {props.userLikesPost ? (
                 <i
                     className="fa-solid fa-thumbs-up"
                     style={{ color: "red" }}></i>
