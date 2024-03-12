@@ -5,33 +5,33 @@ export default function ConfirmDeleteModal({ handleDeletePostTrue, handleDeleteP
     
     return (
 
-        <div className="confirm-delete-container">
-
-            <div className="text-content">
-                <p>confirm delete post?</p>
-            </div>
-
-            <div className="buttons">
-                <div className="button">
-                    <button
-                        type="button"
-                        onClick={handleDeletePostTrue}
-                    >
-                        Yes
-                    </button>
+        <div className="confirm-delete-modal">
+            <div className="confirm-delete-modal-overlay" onClick={handleDeletePostFalse}>
+                <div className="confirm-delete-modal-content">
+                    <div className="confirm-delete-modal-text">
+                    confirm delete post?
+                    </div>
+                    <div className="confirm-delete-modal-options">
+                        <div className="confirm-delet-modal-button-container">
+                            <button
+                                type="button"
+                                onClick={handleDeletePostTrue}>
+                                Yes
+                            </button>
+                        </div>
+                        <div className="confirm-delet-modal-button-container">
+                            <button
+                                type="button"
+                                onClick={handleDeletePostFalse}>
+                                No
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
-                <div className="button">
-                    <button
-                        type="button"
-                        onClick={handleDeletePostFalse}
-                    >
-                        No
-                    </button>
-                </div>
             </div>
-
         </div>
+
         
     )
 }

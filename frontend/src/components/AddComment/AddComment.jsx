@@ -55,7 +55,7 @@ export default function AddComment({ postId, toggleStateChange, post_userId, tri
 				<textarea
 					className="text-area"
 					type="text"
-					placeholder="g'day"
+					placeholder="make a new comment"
 					value={commentText}
 					onChange={handleChange}
 				/>

@@ -161,7 +161,7 @@ const Post = (props) => {
                                 <DeleteButton
                                     postID={props.post._id}
                                     token={props.token}
-                                    handleDelete={handleDelete}
+                                    toggleStateChange={props.toggleStateChange}
                                     onDelete={props.onDelete}
                                     showButton={userIsOwner}
                                 />

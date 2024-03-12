@@ -1,6 +1,7 @@
 .comment-container {
     display: flex;
     flex-direction: column;
+    text-decoration: none;
     /* border-top: 0.5px solid #f3f3f3;
     border-bottom: 0.5px solid #f3f3f3;
     padding: 10px;
@@ -10,10 +11,11 @@
 .comment-header {
     display: flex;
     flex-direction: row;
+    text-decoration: none;
 }
 
 .comment-user-image-container {
-    
+    text-decoration: none;
 
 }
 
@@ -40,18 +42,19 @@
     padding-left: 65px;
     padding-bottom: 20px;
     border-bottom: 1px solid rgba(128, 128, 128, 0.224);
-
-
 }
 
-
 .comment-username {
+    text-decoration: none;
+    color: black;
     font-weight: bold;
     font-size: 14px;
-    color: black;
     padding-bottom: 5px;
 }
 
 .comment-username:hover{
     text-decoration: underline;
+ 
 }
+
+

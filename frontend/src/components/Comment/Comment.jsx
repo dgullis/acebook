@@ -17,10 +17,8 @@ export default function Comment({key, _id, message, likes, postedBy, postedAt, u
             </div>
             </Link>
             <div className="comment-username-time">
-                <Link to={`/users/${user?.username}`} className="comment-user-image">
-                <div className="comment-username">
+                <Link to={`/users/${user?.username}`} className="comment-username">
                     {user?.username}
-                </div>    
                 </Link>
                 <div className="comment-time">
                     {date}

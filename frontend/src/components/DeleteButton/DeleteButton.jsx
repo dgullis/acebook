@@ -1,8 +1,8 @@
 
+import './ConfirmDeleteModal.css'
 import ConfirmDeleteModal from './ConfirmDeleteModal';
 // import './DeleteButton.css'
 import { useState } from 'react';
-import './ConfirmDeleteModal.css'
 import { deleteThePost } from '../../services/posts';
 
 const DeleteButton = (props) => {
@@ -13,12 +13,7 @@ const DeleteButton = (props) => {
             const result = await deleteThePost(props.postID, props.token);
             console.log(result)
             setConfirmDeleteModal(false);
-
-
-			// Call the provided onDelete callback to trigger a re-render
-			if (props.onDelete) {
-				props.onDelete();
-			}
+            props.toggleStateChange()
 		} catch (error) {
 			console.error("Error deleting post:", error);
 		}
@@ -40,25 +35,10 @@ const DeleteButton = (props) => {
         </button>
 
         { confirmDeleteModal && 
-
-            <div className="confirm-delete-modal">
-
-                <div 
-                    onClick={()=> {setConfirmDeleteModal(false)}}
-                    className="overlay">
-                </div>
-
-                <div className="modal-content">
-    
-                    <ConfirmDeleteModal 
-                        handleDeletePostTrue={handleDeletePostTrue}
-                        handleDeletePostFalse={handleDeletePostFalse}
-                    />
-                </div>
-
-            </div>
-
-        
+            <ConfirmDeleteModal 
+                handleDeletePostTrue={handleDeletePostTrue}
+                handleDeletePostFalse={handleDeletePostFalse}
+            />
         }
         </>
     ) : null;
