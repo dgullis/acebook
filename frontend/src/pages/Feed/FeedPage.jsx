@@ -80,7 +80,7 @@ export const FeedPage = () => {
                             token={token}
                             liked={liked}
                             userId={user._id}
-onEdit={handlePostEdit}
+							onEdit={handlePostEdit}
 							edits={edits}
 							setEdits={setEdits}
                         />

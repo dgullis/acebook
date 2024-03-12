@@ -1,15 +1,14 @@
 import "./Post.css";
 import "../../pages/User/UserPage.css";
 import LikeButton from "../LikeButton/LikeButton";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AddComment from "../AddComment/AddComment";
 import Comment from "../Comment/Comment";
 import DeleteButton from "../DeleteButton/DeleteButton";
-
+import PostText from "../PostText/PostText";
 import timeFromNow from "../../utils/TimeFromNow";
 import { Link } from "react-router-dom";
-import EditPost from "../EditPost/EditPost";
-import EditButton from "../EditButton/EditButton";
+import { editPost } from "../../services/posts";
 
 const Post = (props) => {
 
@@ -19,15 +18,21 @@ const Post = (props) => {
     const [showMoreComments, setShowMoreComments] = useState(false);
     const [hideComments, setHideComments] = useState(false);
     const [deletes, setDeletes] = useState(false);
-  
+    const [postText, setPostText] = useState("")
+    const [edittingPost, setEdittingPost] = useState(false)
+
+    useEffect(() => {
+		setPostText(props.post.message);
+	}, [props.post.message]);
+
 
     const handleDelete = () => {
         setDeletes(!deletes);
     };
-  
-  const handleEdit = () => {
-		props.setEdits(!props.edits);
-	};
+
+    const handleEditPost = () => {
+        setEdittingPost(!edittingPost)
+    }
 
     const user = JSON.parse(window.localStorage.getItem("user"));
 
@@ -54,6 +59,26 @@ const Post = (props) => {
     const hideCommentsClick = () => {
         setShowMoreComments(false);
     };
+
+    const handleSaveEditText = (event) => {
+		event.preventDefault();
+		const postData = {
+			userId: props.userId,
+			postId: props.post._id,
+			postMessage: postText,
+		};
+
+		editPost(props.token, postData)
+			.then(() => {
+				props.toggleStateChange();
+			})
+			.catch((error) => {
+				console.log("Error submitting post:", error);
+			});
+        
+        handleEditPost()
+        
+	};
 
     const sortedComments = props.post.comments.sort(
         (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
@@ -90,20 +115,12 @@ const Post = (props) => {
                             )}
                         </div>
                         <div className="post-text">
-                            {props.edits ? (
-					<EditPost
-						token={props.token}
-						userId={user._id}
-						postId={props.post._id}
-						toggleStateChange={props.toggleStateChange}
-						handleEdit={handleEdit}
-						onEdit={props.onEdit}
-						initialPostMessage={props.post.message}
-						edits={props.edits}
-					/>
-				) : (
-					<div>{props.post.message}</div>
-				)}
+                            <PostText 
+                                edittingPost={edittingPost}
+                                postText={postText}
+                                setPostText={setPostText}
+                
+                            />
                         </div>
                     </div>
 
@@ -128,13 +145,13 @@ const Post = (props) => {
                             </div>
                         </div>
                             <div className="delete-post-button-container">
-                                <EditButton
-                                        postID={props.post._id}
-                                        handleEdit={handleEdit}
-                                        showButton={isPostOwner}
-                                        onEdit={props.onEdit}
-                                        edits={props.edits}
-                                    />  
+                                {isPostOwner && edittingPost ? (
+                                    <button onClick={handleSaveEditText}>save</button>
+                                ) : (
+                                    <button onClick={handleEditPost}>edit</button>
+                                )
+                                }
+
                                 <DeleteButton
                                     postID={props.post._id}
                                     token={props.token}

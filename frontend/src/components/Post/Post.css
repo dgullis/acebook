@@ -6,16 +6,18 @@
 .post-container {
     display: flex;
     flex-direction: column;
-    width: 500px;
+    width: 600px;
+    min-width: 380px;
     min-height: 50px;
     text-align: left;
     background-color: rgb(255, 255, 255);
     padding: 8px;
     margin: 10px;
-    border: solid 1px rgb(179, 179, 179);
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: 2px;
 }
+
+
 
 .post-header {
     display: flex;
@@ -43,6 +45,7 @@
 
 .post-username {
     font-weight: bold;
+    text-decoration: none;
     padding-bottom: 5px;
 }
 

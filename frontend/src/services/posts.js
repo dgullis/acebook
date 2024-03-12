@@ -90,6 +90,7 @@ export const editPost = async (token, postData) => {
 		throw new Error(`Received status ${response.status} when editing post.`);
 	}
 };
+
 export const deleteThePost = async (postId, token) => {
 	try {
 		const requestOptions = {
