@@ -10,14 +10,11 @@ export const SignupPage = () => {
     const [password, setPassword] = useState("");
     const [notice, setNotice] = useState("")
     const navigate = useNavigate();
-    const defaultUserImage = "kangaroo-face.png"
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await signup(username, email, password, defaultUserImage);
-            // Set the signup success flag in local storage
-            localStorage.setItem("signupSuccess", "true");
+            await signup(username, email, password);
             setNotice("Signup sucessfull")
             navigate("/login");
         } catch (err) {
@@ -42,7 +39,11 @@ export const SignupPage = () => {
         <Navbar />
 
         <div className="signup-page-container">
-            <div className="signup-page">
+            <div className="signup-page" style={password ? { } : {paddingBottom: "100px"}}>
+
+            <div className="homepage-logo">
+                aceBook
+            </div>
             
             <form onSubmit={handleSubmit}>
                 <div className="signup-username-input">
@@ -85,6 +86,16 @@ export const SignupPage = () => {
                         value="Sign Up"
                     />
                 </div>
+
+                {password && 
+                <div className="password-requirements">
+                    Password must contain: <br /><br/>
+                    <li>8 to 30 characters</li>
+                    <li>Upper and lower case characters</li>
+                    <li>A number</li>
+                    <li>A special character</li>
+                </div>
+}
                 <div className="signup-notice">
                         {notice && notice}
                     </div>

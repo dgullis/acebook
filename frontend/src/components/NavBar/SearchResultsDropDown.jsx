@@ -23,8 +23,10 @@ export default function SearchResultsDropDown( { foundUsers, setShowSearchResult
     return (
         <div ref={dropdownRef} className="search-results">
 
-        {foundUsers.length === 0 ? 
-            <h3>no users found </h3>
+        {foundUsers.length === 0 ?
+        <div className="no-users-found"> 
+            No users found
+        </div>
             :
             <>
             {foundUsers.map((user) => {

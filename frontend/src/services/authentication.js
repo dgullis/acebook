@@ -29,12 +29,12 @@ export const login = async (email, password) => {
 	}
 };
 
-export const signup = async (username, email, password, defaultUserImage) => {
+export const signup = async (username, email, password) => {
 	const payload = {
 		username: username,
 		email: email,
 		password: password,
-		defaultUserImage: defaultUserImage
+		defaultUserImage: "user_3177440.png"
 	};
 
 	const requestOptions = {

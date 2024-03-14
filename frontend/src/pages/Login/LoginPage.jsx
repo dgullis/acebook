@@ -43,6 +43,9 @@ export const LoginPage = () => {
         <Navbar />
         <div className="login-page-container">
             <div className="login-page">
+            <div className="homepage-logo">
+                        aceBook
+                    </div>
                 <form onSubmit={handleSubmit}>
                     <div className="email-input">
                         <label htmlFor="email"></label>

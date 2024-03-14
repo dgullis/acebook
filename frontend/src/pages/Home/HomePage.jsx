@@ -20,7 +20,10 @@ export const HomePage = () => {
         <>
             <Navbar />
             <div className="homepage-container">
-                    <div className="homepage-options">
+                <div className="homepage-options">
+                    <div className="homepage-logo">
+                        aceBook
+                    </div>
                     <div className="homepage-signup-button-container">
                         <a href="/signup">
                             <button id="sign-up-button" type="button">
@@ -37,6 +40,11 @@ export const HomePage = () => {
                     </div>
 
                     <AboutModal />
+
+                    <div className="homepage-about">
+                        aceBook is a project completed on the Makers Academy software development bootcamp. <br /> <br /> 
+                        Please click on About for more information
+                    </div>
 
                 </div>
             </div>

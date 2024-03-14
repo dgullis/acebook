@@ -60,16 +60,14 @@
 }
 
 .post-image-container{
+    max-width: 250x;
+    max-width: 250px;
     padding-bottom: 10px;
 }
 
 .post-image-container img{
-    max-width: 200x;
-    max-width: 200px;
-    height: auto;
-    width:auto;
-    object-fit: cover;
-
+    max-width: 100%;
+    max-width: 100%;
 
 }
 

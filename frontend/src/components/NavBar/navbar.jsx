@@ -62,7 +62,7 @@ const Navbar = ({stateChange}) => {
           <div className="logout-nav-item"> 
             <LogoutNavItem />
           </div>
-          <div className="User-nav-item">
+          <div className="user-nav-item">
             <UserNavItem 
               user={user}
             />

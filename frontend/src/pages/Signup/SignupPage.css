@@ -13,7 +13,7 @@
     align-items: center;
     background-color: #ffffff;
     width: fit-content;
-    padding: 100px 60px 100px 60px;
+    padding: 0px 60px 0px 60px;
     border-radius: 5px;
 }
 
@@ -22,6 +22,8 @@
 }
 
 .signup-username-input {
+    display: flex;
+    justify-content: center;
     padding: 10px;
 
 }
@@ -37,6 +39,8 @@
 }
 
 .signup-email-input {
+    display: flex;
+    justify-content: center;
     padding: 10px;
     
 }
@@ -52,6 +56,8 @@
 }
 
 .signup-password-input {
+    display: flex;
+    justify-content: center;
     padding: 10px;
 }
 
@@ -90,4 +96,10 @@
     font-weight: bold;
     text-align: center;
     color: rgba(114, 1, 1, 0.776)
+}
+
+.password-requirements {
+    padding: 20px;
+    font-size: 13px;
+    text-align:center;
 }
