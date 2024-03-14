@@ -3,7 +3,7 @@ const crypto = require('crypto');
 const User = require('../models/user');
 const Post = require('../models/post');
 
-mongoose.connect('mongodb://0.0.0.0/acebook', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 
 async function seedDatabase() {
 
