@@ -15,7 +15,7 @@ const listenForRequests = () => {
 }
 
 connectToDatabase()
-	.then(() => seedDatabase())
+	// .then(() => seedDatabase())
 	.then(() => {
 		listenForRequests();
 	})
