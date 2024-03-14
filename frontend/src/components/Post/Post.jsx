@@ -6,7 +6,7 @@ import AddComment from "../AddComment/AddComment";
 import Comment from "../Comment/Comment";
 import DeleteButton from "../DeleteButton/DeleteButton";
 import PostText from "../PostText/PostText";
-import timeFromNow from "../../utils/timeFromNow"
+import timeFromNow from "../../utils/timeFromNow";
 import { Link } from "react-router-dom";
 import { editPost } from "../../services/posts";
 
