@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { postComment } from "../../services/posts";
 import { createNotification } from "../../services/user";
-
 import './AddComment.css'
 
-export default function AddComment({ postId, toggleStateChange, post_userId, triggerStateChange }) {
+export default function AddComment({ postId, toggleStateChange, post_userId, userPageRender }) {
 	const [commentText, setCommentText] = useState("");
 	const [token, setToken] = useState(window.localStorage.getItem("token"));
 	const [user, setUserId] = useState(
@@ -17,7 +16,6 @@ export default function AddComment({ postId, toggleStateChange, post_userId, tri
 	};
 
 	const submitComment = async (event) => {
-		// console.log("comment  userId", userId._id)
 		event.preventDefault();
 		if (commentText.length !== 0) {
 			try {
@@ -25,11 +23,9 @@ export default function AddComment({ postId, toggleStateChange, post_userId, tri
 				console.log(result);
 				setCommentText("");
 				toggleStateChange ? toggleStateChange() : null
-				triggerStateChange ? triggerStateChange() : null
-				console.log("yes")
+				userPageRender ? userPageRender() : null
 
 				try {
-					console.log("try", user.username, post_userId, token);
 					const notificationResult = await createNotification({
 						username: user.username,
 						entity_userId: post_userId,

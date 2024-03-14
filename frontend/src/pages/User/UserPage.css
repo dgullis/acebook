@@ -1,6 +1,12 @@
 .user-page-container {
+    margin: 10px;
     display: flex; 
     flex-direction: row;
+    justify-content: center;
+}
+
+.user-container{
+    min-width: 250px;
 }
 
 .user-page-left {
@@ -8,7 +14,7 @@
     flex-direction: column;
 }
 
-.user-page-right {
+.user-page-middle {
     display: flex;
     flex-direction: column;
     border: 2px;
@@ -20,8 +26,10 @@
     flex-direction: column;
     border: none;
     border-radius: 5px;
-    margin: 10px;
     background-color: white;
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .notifications-header {
@@ -36,9 +44,12 @@
     display: flex;
     flex-direction: column;
     border: none;
+    min-width: 250px;
     border-radius: 5px;
-    margin: 10px;
     background-color: white;
+    margin-right: 10px;
+    margin-top: 0px;
+    margin-bottom: 5px;
 
 }
 
@@ -56,14 +67,16 @@
     flex-direction: column;
     border: none;
     border-radius: 5px;
-    margin: 5px;
     background-color: white;
-    margin-top: 20px;
+    margin-right: 10px;
+    margin-bottom: 5px
 }
 
 .posts {
     display: flex;
     flex-direction: column;
+    margin-right: 10px;
+    margin-bottom: 5px;
 }
 
 .posts-header {
@@ -73,8 +86,9 @@
     align-items: center;
     border: none;
     border-radius: 5px;
-    margin: 10px;
     background-color: white;
     min-width: 500px;
+    margin-right: 10px;
+    margin-bottom: 5px;
 
 }

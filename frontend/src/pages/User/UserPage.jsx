@@ -14,18 +14,20 @@ export const UserPage = () => {
     const [user, setUser] = useState([]);
     const [token, setToken] = useState(window.localStorage.getItem("token"));
     const [loggedInUser, setLoggedInUser] = useState(JSON.parse(window.localStorage.getItem("user")))
-    const [stateChange, setStateChange] = useState(false)
+    const [refresh, setRefresh] = useState(false)
     
     const { username } = useParams();
+    console.log("USERNAME", username)
     const navigate = useNavigate();
 
-    const triggerStateChange = () => {
-        setStateChange(!stateChange)
+    const userPageRender = () => {
+        setRefresh(!refresh)
     }
 
 
     useEffect(() => {
         if (token) {
+            console.log("trigger now")
             getUser(token, username)
                 .then((data) => {
                     setUser(data.user);
@@ -38,7 +40,7 @@ export const UserPage = () => {
             } else {
             navigate("/login");
             } 
-        }, [username, stateChange]);
+        }, [username, refresh]);
     
         if (!token) {
             navigate("/login")
@@ -55,7 +57,7 @@ export const UserPage = () => {
         return (
             <>
             <Navbar 
-                stateChange={stateChange}
+                refresh={refresh}
             />
             
                 <div className="user-page-container">
@@ -75,7 +77,7 @@ export const UserPage = () => {
                                 notifications={user.notifications}
                                 loggedInUserId={loggedInUser._id}
                                 token={token}
-                                triggerStateChange={triggerStateChange}
+                                userPageRender={userPageRender}
                             />
 
                             {loggedInUser._id === user._id && 
@@ -84,7 +86,7 @@ export const UserPage = () => {
                                 username={username}
                                 image={user.image}
                                 bio={user.bio}
-                                triggerStateChange={triggerStateChange}
+                                userPageRender={userPageRender}
                             />
 
                             }
@@ -105,7 +107,7 @@ export const UserPage = () => {
                                         notification={notification}
                                         username={username}
                                         token={token}
-                                        triggerStateChange={triggerStateChange}
+                                        userPageRender={userPageRender}
                                     />
                                     </div>
 
@@ -115,16 +117,9 @@ export const UserPage = () => {
 
                         </div>
                         }
-                        <div className="friends-container">
-                            <div className="friends-header">
-                                <p>Friends </p>
-                            </div>
-                            <Friends 
-                                friends={user.friends}
-                            />
-                        </div>
                     </div>
-                    <div className="user-page-right">
+
+                    <div className="user-page-middle">
 
                         <div className="posts-header">
                             <p> Posts </p>
@@ -133,20 +128,30 @@ export const UserPage = () => {
                         <div className="posts">
                         {user.posts.map((post) => 
                             post ? 
-                            <div key={post._id}>
                                 <Post 
                                     key={post._id}
                                     post={post}
                                     postedBy={post.postedBy}
-                                    triggerStateChange={triggerStateChange}
-                                
+                                    userPageRender={userPageRender}
+                                    loggedInUsername={user.username}
+                                    token={token}
+                                    userId={user._id}
                                 />
-                            </div>  
                                 : null
                         )}
                         </div>
 
     
+                    </div>
+                    <div className="user-page-right">
+                        <div className="friends-container">
+                            <div className="friends-header">
+                                <p>Friends </p>
+                            </div>
+                            <Friends 
+                                friends={user.friends}
+                            />
+                        </div>
                     </div>
                 </div>
             

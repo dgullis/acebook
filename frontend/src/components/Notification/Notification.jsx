@@ -3,14 +3,13 @@ import './Notification.css'
 import { deleteNotification } from "../../services/user"
 
 
-export default function Notification({username, notification, token, triggerStateChange}) {
+export default function Notification({username, notification, token, userPageRender}) {
 
     
     const acknowledgeNotification = async() => {
         try {
             const response = await deleteNotification(username, notification._id, token)
-            console.log(response)
-            triggerStateChange()
+            userPageRender()
         } catch (error) {
             console.log(error)
         }

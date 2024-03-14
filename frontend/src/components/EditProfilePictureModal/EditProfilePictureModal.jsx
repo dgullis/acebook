@@ -3,7 +3,7 @@ import "./EditProfilePictureModal.css"
 import { uploadImage } from "../../services/user";
 
 
-export default function EditProfilePictureModal({image, username, toggleEditPictureModal, triggerStateChange}) {
+export default function EditProfilePictureModal({image, username, toggleEditPictureModal, userPageRender}) {
     const [modal, setModal] = useState(false)
     const [file, setFile] = useState(null)
     const [errorMessage, setErrorMessage] = useState("")
@@ -28,7 +28,7 @@ export default function EditProfilePictureModal({image, username, toggleEditPict
                 setFile(null)
                 setErrorMessage('')
                 toggleEditPictureModal()
-                triggerStateChange()
+                userPageRender()
             });
         }
     

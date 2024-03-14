@@ -21,10 +21,6 @@ export const FeedPage = () => {
 		setStateChange(!stateChange);
 	};
 
-	const handlePostDelete = () => {
-		toggleStateChange();
-	};
-
 	useEffect(() => {
 		if (token) {
 			getPosts(token)
@@ -62,17 +58,14 @@ export const FeedPage = () => {
 
             <div className="feedpage-posts-container">
                 {posts.map((post) => {
-                    const liked = post.likes.includes(user._id);
                     return (
                         <Post
                             key={post._id}
                             post={post}
                             postedBy={post.postedBy}
                             toggleStateChange={toggleStateChange}
-                            onDelete={handlePostDelete}
                             loggedInUsername={user.username}
                             token={token}
-                            liked={liked}
                             userId={user._id}
                         />
                     );

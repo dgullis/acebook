@@ -1,8 +1,13 @@
 .friend-container{
     display: flex;
     flex-direction: row;
+    margin: 10px;
+    text-decoration: none;
 
-    margin: 10px
+}
+
+.friend-container:hover{
+    text-decoration: underline;
 
 }
 
@@ -28,7 +33,7 @@
     align-items: center;
     margin-left: 10px;
     color: black;
-    
+    text-decoration: none;
 }
 
 .friend-container:hover{

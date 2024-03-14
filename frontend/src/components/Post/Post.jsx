@@ -1,7 +1,7 @@
 import "./Post.css";
 import "../../pages/User/UserPage.css";
 import LikeButton from "../LikeButton/LikeButton";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import AddComment from "../AddComment/AddComment";
 import Comment from "../Comment/Comment";
 import DeleteButton from "../DeleteButton/DeleteButton";
@@ -28,10 +28,15 @@ const Post = (props) => {
     useEffect(() => {
         setUser(JSON.parse(window.localStorage.getItem("user")))
         setPost(props.post)
-        setPostText(props.post.message);
-        user && setUserLikesPost(props.post.likes.includes(user._id))
-        user && setUserIsOwner(props.post.postedBy._id === user._id)
+        setPostText(props.post.message);  
 	}, [props.post]);
+
+    useEffect(() => {
+        if (user) {
+            setUserLikesPost(props.post.likes.includes(user._id));
+            setUserIsOwner(props.post.postedBy._id === user._id);
+        }
+    }, [user, props.post]);
 
 
     const handleDelete = () => {
@@ -41,8 +46,6 @@ const Post = (props) => {
     const handleEditPost = () => {
         setEdittingPost(!edittingPost)
     }
-
-
 
     const handleLikeUnlike = () => {
         setLike(!like);
@@ -76,6 +79,7 @@ const Post = (props) => {
 		editPost(props.token, postData)
 			.then(() => {
 				props.toggleStateChange();
+                props.userPageRender()
 			})
 			.catch((error) => {
 				console.log("Error submitting post:", error);
@@ -138,6 +142,7 @@ const Post = (props) => {
                                 handleLikeUnlike={handleLikeUnlike}
                                 token={props.token}
                                 toggleStateChange={props.toggleStateChange}
+                                userPageRender={props.userPageRender}
                                 liked={props.liked}
                                 userLikesPost={userLikesPost}
                                 post_userId={props.postedBy._id}
@@ -162,6 +167,7 @@ const Post = (props) => {
                                     postID={props.post._id}
                                     token={props.token}
                                     toggleStateChange={props.toggleStateChange}
+                                    userPageRender={props.userPageRender}
                                     onDelete={props.onDelete}
                                     showButton={userIsOwner}
                                 />
@@ -175,6 +181,7 @@ const Post = (props) => {
                             toggleStateChange={props.toggleStateChange}
                             post_userId={props.postedBy._id}
                             triggerStateChange={props.triggerStateChange}
+                            userPageRender={props.userPageRender}
                         />
                     </div>
 

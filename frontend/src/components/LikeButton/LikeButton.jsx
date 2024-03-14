@@ -12,17 +12,16 @@ const LikeButton = (props) => {
             await likePost(props.token, props.postId, props.userId);
             props.setUserLikesPost((previousState) => !previousState);
             props.handleLikeUnlike();
-            props.toggleStateChange();
+            props.toggleStateChange && props.toggleStateChange()
+            props.userPageRender && props.userPageRender();
             if (!props.userLikesPost) {
                 try {
-                    console.log("hello")
                     const notificationResult = await createNotification({
                         username: props.loggedInUsername,
                         entity_userId: props.post_userId,
                         token: props.token,
                         notificationType: "post-like",
                     });
-                    console.log(notificationResult);
                 } catch (error) {
                     console.log(
                         "An error occured while creating a notification"
@@ -30,14 +29,12 @@ const LikeButton = (props) => {
                 }
             } else {
                 try {
-                    console.log("hello 2")
                     const notificationResult = await createNotification({
                         username: props.loggedInUsername,
                         entity_userId: props.post_userId,
                         token: props.token,
                         notificationType: "post-unlike",
                     });
-                    console.log(notificationResult);
                 } catch (error) {
                     console.log(
                         "An error occured while creating a notification"

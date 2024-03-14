@@ -1,7 +1,6 @@
 
 import './ConfirmDeleteModal.css'
 import ConfirmDeleteModal from './ConfirmDeleteModal';
-// import './DeleteButton.css'
 import { useState } from 'react';
 import { deleteThePost } from '../../services/posts';
 
@@ -11,9 +10,9 @@ const DeleteButton = (props) => {
     const handleDeletePostTrue = async () => {
         try {
             const result = await deleteThePost(props.postID, props.token);
-            console.log(result)
             setConfirmDeleteModal(false);
             props.toggleStateChange()
+            props.userPageRender()
 		} catch (error) {
 			console.error("Error deleting post:", error);
 		}

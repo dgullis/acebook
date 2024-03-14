@@ -6,7 +6,7 @@ import { addFriend, removeFriend } from '../../services/user.js';
 import Notification from '../Notification/Notification.jsx';
 import Friends from '../Friends/Friends.jsx';
 
-const User = ({_id, username, email, friends, image, bio, posts, loggedInUserId, token, triggerStateChange, notifications }) => {
+const User = ({_id, username, email, friends, image, bio, posts, loggedInUserId, token, userPageRender, notifications }) => {
     const [userPosts, setUserPosts] = useState([])
 
     const friendIds = friends.map((friend) => {
@@ -24,7 +24,7 @@ const User = ({_id, username, email, friends, image, bio, posts, loggedInUserId,
         addFriend(_id, loggedInUserId, username, token)
             .then(res => {
                 console.log(res)
-                triggerStateChange()
+                userPageRender()
             });
                 
     }
@@ -33,7 +33,7 @@ const User = ({_id, username, email, friends, image, bio, posts, loggedInUserId,
             removeFriend(_id, loggedInUserId, username, token)
             .then(res => {
                 console.log(res)
-                triggerStateChange()
+                userPageRender()
             });
     }
     
@@ -44,23 +44,6 @@ const User = ({_id, username, email, friends, image, bio, posts, loggedInUserId,
                 <img src={image} alt="Profile Picture" className="user-image"/><br></br>
             </div>
 
-            {/* <p>notifications: </p>
-
-            { notifications &&
-                notifications.map((notification) => 
-                    notification ? 
-                    <div key={notification._id}>
-                    
-                    <Notification 
-                        notification={notification}
-                        username={username}
-                        token={token}
-                        triggerStateChange={triggerStateChange}
-                    />
-                    </div>
-
-                    : null
-            )} */}
             <div className="user-name">
                 {username}
             </div>
@@ -92,33 +75,7 @@ const User = ({_id, username, email, friends, image, bio, posts, loggedInUserId,
 
             
             
-            {/* <p>Posts: </p>
 
-            {userPosts.map((post) => 
-                post ? 
-                <div key={post._id}>
-                    <Post 
-                        key={post._id}
-                        post={post}
-                        postedBy={post.postedBy}
-                    
-                    />
-
-                    {post.comments.map((comment) => 
-                        comment ? 
-                            <Comment 
-                            key={_id}
-                            _id={comment._id}
-                            message={comment.message}
-                            likes={comment.likes}
-                            postedBy={comment.user}
-                            postedAt={comment.createdAt}
-                            /> 
-                            : null )
-                    }
-                </div>  
-                    : null
-            )} */}
         </div>
     )
 
