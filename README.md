@@ -8,7 +8,7 @@
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=flat&logo=vite&logoColor=white)
 ![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=flat&logo=firebase)
 
-![alt text](frontend/public/acebook-recording-spedup-ezgif.com-video-to-gif-converter.gif)
+![alt text](frontend/public/acebook-recording.gif)
 
 ### Summary
 
