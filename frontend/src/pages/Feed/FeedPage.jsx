@@ -4,10 +4,12 @@ import { getPosts } from "../../services/posts";
 import NewPost from "../../components/Post/NewPost";
 import Post from "../../components/Post/Post";
 import Navbar from "../../components/NavBar/navbar";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import './FeedPage.css'
 
 
 export const FeedPage = () => {
+    const [loading, setLoading] = useState(true)
 	const [posts, setPosts] = useState([]);
 	const [token, setToken] = useState(window.localStorage.getItem("token"));
 	const [user, setUser] = useState(
@@ -23,6 +25,7 @@ export const FeedPage = () => {
 
 	useEffect(() => {
 		if (token) {
+            setLoading(true)
 			getPosts(token)
 				.then((data) => {
 					const sortedPosts = data.posts.sort(
@@ -31,14 +34,22 @@ export const FeedPage = () => {
 					setPosts(sortedPosts.reverse());
 					setToken(data.token);
 					window.localStorage.setItem("token", data.token);
+                    setLoading(false)
+
 				})
 				.catch((err) => {
 					console.err(err);
+                    setLoading(false)
+
 				});
 		} else {
 			navigate("/login");
 		}
 	}, [stateChange]);
+
+    if (loading) {
+        return <LoadingSpinner loading={loading} />;
+    }
 
 
     return (

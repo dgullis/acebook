@@ -7,10 +7,12 @@ import Navbar from "../../components/NavBar/navbar";
 import Post from "../../components/Post/Post";
 import Friends from "../../components/Friends/Friends";
 import Notification from "../../components/Notification/Notification";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import "./UserPage.css"
 
 
 export const UserPage = () => {
+    const [loading, setLoading] = useState(true)
     const [user, setUser] = useState([]);
     const [token, setToken] = useState(window.localStorage.getItem("token"));
     const [loggedInUser, setLoggedInUser] = useState(JSON.parse(window.localStorage.getItem("user")))
@@ -26,15 +28,17 @@ export const UserPage = () => {
 
     useEffect(() => {
         if (token) {
-            console.log("trigger now")
+            setLoading(true)
             getUser(token, username)
                 .then((data) => {
                     setUser(data.user);
                     setToken(data.token);
                     window.localStorage.setItem("token", data.token)
+                    setLoading(false)
                 })
                 .catch((err) => {
                     console.error(err);
+                    setLoading(false)
                 });
             } else {
             navigate("/login");
@@ -43,6 +47,10 @@ export const UserPage = () => {
     
         if (!token) {
             navigate("/login")
+        }
+
+        if (loading) {
+            return <LoadingSpinner loading={loading} />;
         }
         
         if (user.length === 0) {
