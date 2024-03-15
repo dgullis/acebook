@@ -11,6 +11,7 @@ const listenForRequests = () => {
 	const port = process.env.PORT || 3000;
 	app.listen(port, () => {
 		console.log("Now listening on port", port);	
+		console.log("Running in", process.env.NODE_ENV, "mode")
 });
 }
 
