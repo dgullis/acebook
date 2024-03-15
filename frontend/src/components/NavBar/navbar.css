@@ -66,6 +66,10 @@ body, .navbar {
     
 }
 
+.signup-nav-item {
+    padding-right: 20px;
+}
+
 #home-nav-button, #login-nav-button, #signup-nav-button {
     display: flex;
     border: none;
