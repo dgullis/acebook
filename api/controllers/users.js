@@ -62,7 +62,6 @@ const create = async (req, res) => {
 	user
 		.save()
 		.then((user) => {
-			console.log("User created, id:", user._id.toString());
 			res.status(201).json({ message: "OK" });
 		})
 		.catch((err) => {
@@ -148,7 +147,6 @@ const uploadImage = async (req, res) => {
 const editBio = async (req, res) => {
 	const username = req.params.username;
 	const newBio = req.body.bio
-	console.log("this is the bio", newBio);
 	try {
 		const updatedUser = await User.findOneAndUpdate(
 			{username: username},
@@ -265,7 +263,6 @@ const removeNotification = async(req, res) => {
 	const objectIdNotificationId = new ObjectId(notificationId)
 
 	try {
-		console.log("back end", notificationId)
 		const updatedUser = await User.findOneAndUpdate(
 			{username:username},
 			{$pull: {notifications: {_id: objectIdNotificationId}}},

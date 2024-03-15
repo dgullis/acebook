@@ -45,7 +45,6 @@ const postComment = async (req, res) => {
     const commentText = req.body.commentText;
     const userId = req.body.userId;
     const postId = req.params.postId;
-    // console.log("back-end userid", userId)
 
     try {
         const post = await Post.findOneAndUpdate(
@@ -125,7 +124,6 @@ const deletePost = async (req, res) => {
 
 const editPost = async (req, res) => {
     const postID = req.body.postId;
-    console.log(req.body, "backend");
     const newPostMessage = req.body.message;
 
     try {
