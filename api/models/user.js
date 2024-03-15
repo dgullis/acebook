@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-const root = "/images/";
 
 const NotificationSchema = new mongoose.Schema(
 	{
@@ -15,10 +14,7 @@ const UserSchema = new mongoose.Schema(
 		email: { type: String, required: true, unique: true },
 		password: { type: String, required: true }, // consider validation options within schema
 		bio: String,
-		image: {
-			type: String,
-			get: (v) => `${root}${v}`, // possible solution but requires image hosting server
-		},
+		image: String,
 		// stores ObjectIds of documents in 'User' collection
 		// when retrieving a User look to use populate() function to retrieve full documents of friends
 		friends: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],

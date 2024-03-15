@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
 
-const root = "/images/";
-
 // A Schema defines the "shape" of entries in a collection. This is similar to
 // defining the columns of an SQL Database.
 const CommentSchema = new mongoose.Schema(
@@ -16,10 +14,7 @@ const CommentSchema = new mongoose.Schema(
 const PostSchema = new mongoose.Schema(
     {
         message: String,
-        media: {
-            type: String,
-            get: (v) => `${root}${v}`,
-        },
+        media: String,
         likes: { type: [String], default: [] },
         postedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
         comments: [CommentSchema],

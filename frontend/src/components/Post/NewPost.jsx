@@ -13,6 +13,8 @@ const NewPost = ( {token, userId, toggleStateChange, userImg} ) => {
     const [errorMessage, setErrorMessage] = useState("")
     const [uploadedImage, setUploadedImage] = useState(null)
     const [firebaseURL, setFirebaseURL] = useState("")
+    console.log("userId1", userId)
+
 
     
     const uploadImageFirebase = () => {
@@ -21,9 +23,30 @@ const NewPost = ( {token, userId, toggleStateChange, userImg} ) => {
             .then(() => {
                 getDownloadURL(imageRef)
                     .then((downloadURL) => {
-                        setFirebaseURL(downloadURL)
-                        console.log("downloadURL:", downloadURL)
-                        alert("Image Uploaded")
+                        const formData = new FormData();
+                        formData.append('postMessage', postMessage);
+                        console.log("userId2", userId)
+                        console.log("imageURL", downloadURL)
+                        formData.append('userId', userId);
+                        formData.append('imageURL', downloadURL);
+                        console.log("image formdata", formData.userId)
+
+                        createPost(token, userId, downloadURL, postMessage)
+                            .then(res => {
+                                // console.log(res)
+                                setPostMessage('')
+                                setFile(null)
+                                setErrorMessage('')
+                                setuploadImage(false)
+                                setUploadedImage(null)
+                                setFirebaseURL("")
+                                toggleStateChange()
+
+                            })
+                            .catch(error => {
+                                console.log('error submitting post', error)
+                            })   
+
                     })
                     .catch((error) => {
                         console.error("error getting download URL:", error)
@@ -37,36 +60,39 @@ const NewPost = ( {token, userId, toggleStateChange, userImg} ) => {
     const handleSubmit = (event) => {
         event.preventDefault()
 
-        const formData = new FormData();
-        if(file){
-            formData.append('file', file)
+        if(!file && !postMessage){
+            return alert("cannot post empty comment")
+        } 
+        
+        if (file) {
+            uploadImageFirebase()
         } else {
-            if(!postMessage) {
-                return alert("cannot post empty comment")
-            }
-        }
-        if(postMessage){
-            formData.append('postMessage', postMessage)
-        }
-        formData.append("userId", userId)
+            const formData = new FormData();
+            formData.append('postMessage', postMessage);
+            formData.append('userId', userId);
 
-        uploadImageFirebase()
-        formData.append("imageURL", firebaseURL)
-        createPost(token, formData)
-            .then(res => {
-                // console.log(res)
-                setPostMessage('')
-                setFile(null)
-                setErrorMessage('')
-                setuploadImage(false)
-                setUploadedImage(null)
-                setFirebaseURL("")
-                toggleStateChange()
+            createPost(token, formData)
+                .then(res => {
+                    // console.log(res)
+                    setPostMessage('')
+                    setFile(null)
+                    setErrorMessage('')
+                    setuploadImage(false)
+                    setUploadedImage(null)
+                    setFirebaseURL("")
+                    alert("Image Uploaded")
+                    toggleStateChange()
 
-            })
-            .catch(error => {
-                console.log('error submitting post', error)
-            })   
+                })
+                .catch(error => {
+                    console.log('error submitting post', error)
+                })   
+
+            
+
+
+        }
+
     }
 
     const handleUploadImageClick = () => {

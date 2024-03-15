@@ -47,15 +47,26 @@ export const postComment = async (token, commentText, postId, userId) => {
 	const data = await response.json();
 	return data;
 };
+export const createPost = async (token, userId, downloadURL, postMessage) => {
+	const payload = {
+		userId: userId,
+		imageURL: downloadURL,
+	};
 
-export const createPost = async (token, formData) => {
+	if (postMessage) {
+		payload.postMessage = postMessage;
+	}
+
 	const requestOptions = {
 		method: "POST",
 		headers: {
 			Authorization: `Bearer ${token}`,
+			"Content-Type": "application/json",
 		},
-		body: formData,
+		body: JSON.stringify(payload),
 	};
+
+	console.log("payload", payload)
 
 	const response = await fetch(`${BACKEND_URL}/posts`, requestOptions);
 
