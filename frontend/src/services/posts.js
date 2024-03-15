@@ -1,5 +1,11 @@
 // docs: https://vitejs.dev/guide/env-and-mode.html
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+let BACKEND_URL;
+
+if (process.env.NODE_ENV === 'development') {
+	BACKEND_URL = 'http://localhost:3000'; 
+} else {
+	BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+}
 
 export const getPosts = async (token) => {
 	const requestOptions = {
