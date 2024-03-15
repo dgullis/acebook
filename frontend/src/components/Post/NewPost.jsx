@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { createPost } from '../../services/posts'
+import { storage } from '../../firebase';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import {v4} from 'uuid'
 import './NewPost.css'
 
 
@@ -9,7 +12,28 @@ const NewPost = ( {token, userId, toggleStateChange, userImg} ) => {
     const [uploadImage, setuploadImage] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
     const [uploadedImage, setUploadedImage] = useState(null)
+    const [firebaseURL, setFirebaseURL] = useState("")
 
+    
+    const uploadImageFirebase = () => {
+        const imageRef = ref(storage, `post-images/${file.name + v4()}`)
+        uploadBytes(imageRef, file)
+            .then(() => {
+                getDownloadURL(imageRef)
+                    .then((downloadURL) => {
+                        setFirebaseURL(downloadURL)
+                        console.log("downloadURL:", downloadURL)
+                        alert("Image Uploaded")
+                    })
+                    .catch((error) => {
+                        console.error("error getting download URL:", error)
+                    })
+            })
+            .catch((error) => {
+                console.error("error uploading image", error)
+            })
+    }
+    
     const handleSubmit = (event) => {
         event.preventDefault()
 
@@ -26,14 +50,17 @@ const NewPost = ( {token, userId, toggleStateChange, userImg} ) => {
         }
         formData.append("userId", userId)
 
+        uploadImageFirebase()
+        formData.append("imageURL", firebaseURL)
         createPost(token, formData)
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 setPostMessage('')
                 setFile(null)
                 setErrorMessage('')
                 setuploadImage(false)
                 setUploadedImage(null)
+                setFirebaseURL("")
                 toggleStateChange()
 
             })

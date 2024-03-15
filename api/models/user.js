@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const root = "../public/images/";
+const root = "/images/";
 
 const NotificationSchema = new mongoose.Schema(
 	{

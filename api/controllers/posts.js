@@ -15,6 +15,7 @@ const getAllPosts = async (req, res) => {
 
 const createPost = async (req, res) => {
     const postMessage = req.body.postMessage;
+    const imageURL = req.body.imageURL && req.body.imageURL
     let filename;
 
     if (req.file) {
@@ -26,7 +27,7 @@ const createPost = async (req, res) => {
     try {
         const post = new Post({
             message: postMessage,
-            media: filename ? filename : null,
+            media: imageURL ? imageURL : null,
             postedBy: userId,
         });
         await post.save();
