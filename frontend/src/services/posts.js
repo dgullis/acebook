@@ -50,11 +50,14 @@ export const postComment = async (token, commentText, postId, userId) => {
 export const createPost = async (token, userId, downloadURL, postMessage) => {
 	const payload = {
 		userId: userId,
-		imageURL: downloadURL,
 	};
 
 	if (postMessage) {
 		payload.postMessage = postMessage;
+	}
+
+	if (downloadURL) {
+		payload.imageURL = downloadURL;
 	}
 
 	const requestOptions = {

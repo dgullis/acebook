@@ -46,13 +46,19 @@ export const searchUsers = async (searchQuery) => {
 	return data;
 };
 
-export const uploadImage = async (formData, username) => {
+export const uploadImage = async (username, imageURL) => {
+	
+	const payload = {
+		imageURL: imageURL
+	}
+	
 	const requestOptions = {
 		method: "PATCH",
-		body: formData,
+		headers: {"Content-Type": "application/json"},
+		body:  JSON.stringify(payload),
 	};
 
-	console.log("body formData", formData)
+	console.log("body formData", payload)
 
 	let response = await fetch(
 		`${BACKEND_URL}/users/${username}/upload`,

@@ -12,24 +12,13 @@ const NewPost = ( {token, userId, toggleStateChange, userImg} ) => {
     const [uploadImage, setuploadImage] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
     const [uploadedImage, setUploadedImage] = useState(null)
-    const [firebaseURL, setFirebaseURL] = useState("")
-    console.log("userId1", userId)
 
-
-    
     const uploadImageFirebase = () => {
         const imageRef = ref(storage, `post-images/${file.name + v4()}`)
         uploadBytes(imageRef, file)
             .then(() => {
                 getDownloadURL(imageRef)
                     .then((downloadURL) => {
-                        const formData = new FormData();
-                        formData.append('postMessage', postMessage);
-                        console.log("userId2", userId)
-                        console.log("imageURL", downloadURL)
-                        formData.append('userId', userId);
-                        formData.append('imageURL', downloadURL);
-                        console.log("image formdata", formData.userId)
 
                         createPost(token, userId, downloadURL, postMessage)
                             .then(res => {
@@ -39,7 +28,6 @@ const NewPost = ( {token, userId, toggleStateChange, userImg} ) => {
                                 setErrorMessage('')
                                 setuploadImage(false)
                                 setUploadedImage(null)
-                                setFirebaseURL("")
                                 toggleStateChange()
 
                             })
@@ -67,11 +55,7 @@ const NewPost = ( {token, userId, toggleStateChange, userImg} ) => {
         if (file) {
             uploadImageFirebase()
         } else {
-            const formData = new FormData();
-            formData.append('postMessage', postMessage);
-            formData.append('userId', userId);
-
-            createPost(token, formData)
+            createPost(token, userId, null, postMessage)
                 .then(res => {
                     // console.log(res)
                     setPostMessage('')
@@ -79,8 +63,6 @@ const NewPost = ( {token, userId, toggleStateChange, userImg} ) => {
                     setErrorMessage('')
                     setuploadImage(false)
                     setUploadedImage(null)
-                    setFirebaseURL("")
-                    alert("Image Uploaded")
                     toggleStateChange()
 
                 })

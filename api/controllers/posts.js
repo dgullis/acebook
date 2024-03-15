@@ -14,12 +14,9 @@ const getAllPosts = async (req, res) => {
 };
 
 const createPost = async (req, res) => {
-    console.log("req bod", req.body)
-    console.log("imageURL", req.body.imageURL)
     const postMessage = req.body.postMessage;
     const imageURL = req.body.imageURL && req.body.imageURL
     const userId = req.body.userId;
-    console.log("req.body", req.body)
 
     try {
         const post = new Post({

@@ -115,13 +115,13 @@ const Post = (props) => {
                     </div>
                 )}
                     <div className="post-body">
-                        <div className="post-image-container">
-                            {props.post.media !== "../public/images/null" && (
-                                <>
+                        
+                            {props.post.media  && (
+                                <div className="post-image-container">
                                     <img src={props.post.media}></img>
-                                </>
+                                </div>
                             )}
-                        </div>
+                        
                         <div className="post-text">
                             <PostText 
                                 edittingPost={edittingPost}

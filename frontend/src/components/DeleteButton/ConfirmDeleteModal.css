@@ -46,6 +46,16 @@
 
 }
 
-.confirm-delet-modal-button-container {
+.confirm-delete-modal-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    
     padding: 5px
+}
+
+.confirm-delete-modal-button-container button{
+    padding-top: 3px;
+    text-align: center;
 }

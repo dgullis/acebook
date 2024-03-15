@@ -11,8 +11,8 @@ const DeleteButton = (props) => {
         try {
             const result = await deleteThePost(props.postID, props.token);
             setConfirmDeleteModal(false);
-            props.toggleStateChange()
-            props.userPageRender()
+            props.toggleStateChange && props.toggleStateChange()
+            props.userPageRender && props.userPageRender()
 		} catch (error) {
 			console.error("Error deleting post:", error);
 		}

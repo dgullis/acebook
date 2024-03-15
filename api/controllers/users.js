@@ -129,13 +129,12 @@ const searchUsers = async (req, res) => {
 
 const uploadImage = async (req, res) => {
 	const username = req.params.username;
-	console.log(req.file);
-	const fileName = req.file.filename
+	const imageURL = req.body.imageURL
 
 	try {
 		const updatedUser = await User.findOneAndUpdate(
 			{username: username},
-			{$set: {image: fileName} },
+			{$set: {image: imageURL} },
 			{ new: true }
 		)
 		
