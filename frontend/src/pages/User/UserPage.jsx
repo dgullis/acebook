@@ -49,14 +49,14 @@ export const UserPage = () => {
             navigate("/login")
         }
 
-        if (loading) {
-            return <LoadingSpinner loading={loading} />;
-        }
+        // if (loading) {
+        //     return <LoadingSpinner loading={loading} />;
+        // }
         
         if (user.length === 0) {
             return(
                 <>
-                <h1>User not found</h1>
+                <LoadingSpinner loading={loading} />
                 </>
             )
         }

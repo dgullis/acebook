@@ -20,6 +20,10 @@
     border-bottom:1px black;
 }
 
+.text-area-container textarea{
+    font-family: inherit;
+}
+
 .uploaded-image-container {
     position: relative;
     display: inline-block;

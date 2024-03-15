@@ -45,7 +45,7 @@ export const SignupPage = () => {
                 aceBook
             </div>
             
-            <form onSubmit={handleSubmit}>
+            <form autoComplete="off" onSubmit={handleSubmit}>
                 <div className="signup-username-input">
                     <label htmlFor="username"></label>
                     <input
@@ -83,7 +83,7 @@ export const SignupPage = () => {
                         role="submit-button"
                         id="submit"
                         type="submit"
-                        value="Sign Up"
+                        value="Sign up"
                     />
                 </div>
 

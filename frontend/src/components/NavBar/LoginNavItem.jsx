@@ -13,7 +13,7 @@ export default function LoginNavItem() {
         id="login-nav-button"
         onClick={handleClick}
         >
-            Login
+            Log in
         </button>
     )
 

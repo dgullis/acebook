@@ -15,13 +15,23 @@
 .user {
     display: flex;
     flex-direction: column;
-    justify-content: left;
+    justify-content: center;
     text-align: left;
+    align-items: center;
     padding: 10px;
     margin: 5px;
 }
 
+.user-bio {
+    width: 100%;
+}
+
+.user-email {
+    width: 100%;
+}
+
 .user-name {
+    width: 100%;
     text-align: center;
     font-weight: bold;
     font-size: 20px;
@@ -31,12 +41,24 @@
 
 .friend-button-container {
     display: flex;
-    justify-content: center;
-    padding: 30px 5px 5px 5px;
-    align-items: center;
-}
-
-.friend-button {
+    justify-content: flex-start;
     padding: 5px;
 }
+
+
+.friend-button {
+    margin-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 25px;
+    width: 200px;
+    background-color: #e74d3cea;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+
+
 

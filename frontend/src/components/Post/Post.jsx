@@ -115,21 +115,23 @@ const Post = (props) => {
                     </div>
                 )}
                     <div className="post-body">
+
+                    <div className="post-text">
+                        <PostText 
+                            edittingPost={edittingPost}
+                            postText={postText}
+                            setPostText={setPostText}
+            
+                        />
+                    </div>
                         
-                            {props.post.media  && (
-                                <div className="post-image-container">
-                                    <img src={props.post.media}></img>
-                                </div>
-                            )}
-                        
-                        <div className="post-text">
-                            <PostText 
-                                edittingPost={edittingPost}
-                                postText={postText}
-                                setPostText={setPostText}
-                
-                            />
-                        </div>
+                        {props.post.media  && (
+                            <div className="post-image-container">
+                                <img src={props.post.media}></img>
+                            </div>
+                        )}
+                    
+
                     </div>
 
                     <div className="post-footer"> 

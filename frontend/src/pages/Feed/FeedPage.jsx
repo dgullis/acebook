@@ -47,9 +47,9 @@ export const FeedPage = () => {
 		}
 	}, [stateChange]);
 
-    if (loading) {
-        return <LoadingSpinner loading={loading} />;
-    }
+    // if (loading) {
+    //     return <LoadingSpinner loading={loading} />;
+    // }
 
 
     return (

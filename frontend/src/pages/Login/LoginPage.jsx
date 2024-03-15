@@ -46,7 +46,7 @@ export const LoginPage = () => {
             <div className="homepage-logo">
                         aceBook
                     </div>
-                <form onSubmit={handleSubmit}>
+                <form autoComplete="off" onSubmit={handleSubmit}>
                     <div className="email-input">
                         <label htmlFor="email"></label>
                         <input
@@ -72,7 +72,7 @@ export const LoginPage = () => {
                             role="submit-button"
                             id="submit"
                             type="submit"
-                            value="login"
+                            value="Log in"
                         />
                     </div>
                     <div className="login-notice">

@@ -12,7 +12,7 @@ import UserNavItem from './UserNavItem';
 import './navbar.css'
 
 
-const Navbar = ({stateChange}) => {
+const Navbar = ({refresh}) => {
     const [token, setToken] = useState(window.localStorage.getItem("token"))
     const [user, setUser] = useState(JSON.parse(window.localStorage.getItem("user")))
     const [showSearchResults, setShowSearchResults] = useState(false)
@@ -20,12 +20,11 @@ const Navbar = ({stateChange}) => {
 
     useEffect(() => {
       setUser(JSON.parse(window.localStorage.getItem("user")));
-  }, [stateChange]);
+  }, [refresh]);
 
     const handleSearch = (searchResults) => {
       setFoundUsers(searchResults)
       setShowSearchResults(true) 
-      console.log("search results", searchResults)
     }
 
   return (

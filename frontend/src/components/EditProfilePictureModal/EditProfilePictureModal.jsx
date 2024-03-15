@@ -60,7 +60,6 @@ export default function EditProfilePictureModal({image, username, toggleEditPict
         setModal(!modal)
     }
     const handleFileChange = (e) => {
-        console.log("here first ")
         setFile(e.target.files[0])
     }
 

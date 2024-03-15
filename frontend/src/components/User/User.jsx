@@ -51,8 +51,8 @@ const User = ({_id, username, email, friends, image, bio, posts, loggedInUserId,
                 <p>Email: {email}</p>
             </div>
             <div className="user-bio">
-                <p>Bio:</p>
-                {bio}
+                <p>Bio: {bio}</p>
+                
             </div>
 
             <div className="friend-button-container">
@@ -60,7 +60,7 @@ const User = ({_id, username, email, friends, image, bio, posts, loggedInUserId,
     
                 <button className="friend-button"
                     onClick={handleRemoveFriend}>
-                        remove from friends
+                        Remove friend
                 </button>
             
                 : 
