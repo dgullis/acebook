@@ -1,2 +1,82 @@
-<span style="font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif; font-weight: 1000; font-size: 30px; letter-spacing: 1.5px; ">aceBook</span>
 ![alt text](frontend/public/images/aebook-banner.png)
+
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=flat&logo=javascript&logoColor=%23F7DF1E)
+![mongo](https://img.shields.io/badge/MongoDB-%234ea94b.svg?logo=mongodb&logoColor=white&style=flat)
+![express](https://img.shields.io/badge/express.js-%23404d59.svg?logo=express&logoColor=%2361DAFB&style=flat)
+![react](https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=flat)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?logo=node.js&logoColor=white&style=flat)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=flat&logo=vite&logoColor=white)
+![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=flat&logo=firebase)
+
+### Summary
+
+aceBook is a group project completed on the Makers Academy software development bootcamp.
+
+The brief for the project was to create a 'facebook clone' from a skeleton legacy codebase.
+
+### Description
+
+The legacy codebase [here](https://github.com/makersacademy/acebook-mern-vite) provided routes for a user to login and sign up.
+
+Over two weeks as a team we developed the following user features
+
+- create new posts with text +/- an image
+- edit and delete own posts
+- like/unlike and comment on posts
+- view all posts from users on a feed page
+- edit bio and profile picture
+- befriend other users
+- notifications for new friends / comments / likes
+
+### Working Process
+
+Embracing Agile methodologies involving iterative development cycles, daily stand-ups and sprint planning to define and prioritise tasks. Organised workflow through a ticket system to ensure tracking and management of tasks throughout the project.
+
+
+
+
+### How To Use
+```
+# clone this repository
+$ git clone https://github.com/dgullis/acebook
+
+# go into the repository
+$ cd acebook
+
+# install dependencies
+$ cd frontend
+$ npm install
+
+$ cd ../api
+$ npm install
+
+# start the server
+$ cd api
+$ npm run dev
+
+# start the front end application
+$ cd frontend
+npm run dev
+```
+
+You should now be able to open your browser and go to http://localhost:3000/ to see the programm running
+
+If you would like to login as an existing user please use these details
+
+- email: alice@example.com
+- password: Passw0rd!A
+
+### Contributors
+
+- [Dan Gullis](https://github.com/dgullis)
+- [Simon Budden](https://github.com/fantastito)
+- [Ed Gemmill](https://github.com/EdGemmill)
+- [Nick Torkington](https://github.com/N1ckT0rk)
+- [Thomas Powell](https://github.com/Tomtommx8)
+
+
+
+
+
+
+
