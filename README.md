@@ -16,7 +16,7 @@ aceBook is a group project completed on the Makers Academy software development 
 
 The brief for the project was to create a 'facebook clone' from a skeleton legacy codebase.
 
-[live site](https://aws-fe.dzq2c3fblb9ts.amplifyapp.com/login)
+[acebook.dangullis.com](https://acebook.dangullis.com)
 
 If you would like to login as an existing user please use these details
 
