@@ -16,6 +16,13 @@ aceBook is a group project completed on the Makers Academy software development 
 
 The brief for the project was to create a 'facebook clone' from a skeleton legacy codebase.
 
+[live site](https://aws-fe.dzq2c3fblb9ts.amplifyapp.com/login)
+
+If you would like to login as an existing user please use these details
+
+- email: alice@example.com
+- password: Passw0rd!A
+
 ### Description
 
 The legacy codebase [here](https://github.com/makersacademy/acebook-mern-vite) provided routes for a user to login and sign up.
@@ -34,39 +41,6 @@ Over two weeks as a team we developed the following user features
 
 Embracing Agile methodologies involving iterative development cycles, daily stand-ups and sprint planning to define and prioritise tasks. Organised workflow through a ticket system to ensure tracking and management of tasks throughout the project.
 
-
-
-
-### How To Use
-```
-# clone this repository
-$ git clone https://github.com/dgullis/acebook
-
-# go into the repository
-$ cd acebook
-
-# install dependencies
-$ cd frontend
-$ npm install
-
-$ cd ../api
-$ npm install
-
-# start the server
-$ cd api
-$ npm run dev
-
-# start the front end application
-$ cd frontend
-npm run dev
-```
-
-You should now be able to open your browser and go to http://localhost:3000/ to see the programm running
-
-If you would like to login as an existing user please use these details
-
-- email: alice@example.com
-- password: Passw0rd!A
 
 ### Contributors
 
