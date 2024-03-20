@@ -190,24 +190,15 @@ When the user logs out, the front end discards the token.
 
 ###  Technologies
 
-MongoDB 
-
-Express 
-
-React
-
-Node
-
-Vite - to generate the React Project
-
-Vitest - unit testing on the frontend
-
-Jest - unit testing on the backend
-
-Mongoose - model objects in MongoDB
-
-Nodemon - reload the server automatically
-
-Firebase - image storage
+- MongoDB - database
+- Express - server framework
+- React - user interface framework
+- Node - JavaScript runtime environment 
+- Vite - to generate the React Project
+- Vitest - unit testing on the frontend
+- Jest - unit testing on the backend
+- Mongoose - model objects in MongoDB
+- Nodemon - reload the server automatically
+- Firebase - image storage
 
 
