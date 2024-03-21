@@ -35,7 +35,7 @@ export const signup = async (username, email, password) => {
 		username: username,
 		email: email,
 		password: password,
-		defaultUserImage: "user_3177440.png"
+		defaultUserImage: "https://firebasestorage.googleapis.com/v0/b/acebook-bd3b5.appspot.com/o/user-images%2Fuser_3177440.png?alt=media&token=ddb2d26e-e797-4361-9f51-13b1cc1ba32b"
 	};
 
 	const requestOptions = {
