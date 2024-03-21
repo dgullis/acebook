@@ -33,11 +33,15 @@ const Navbar = ({refresh}) => {
   <>
   <div className="navbar-container">
     <div className="navbar">
-
       <div data-testId="searchItem" className="search-nav-item">
+        
+        
+        { token && 
         <SearchNavItem 
           handleSearch={handleSearch}
         />
+        }
+
         {showSearchResults && 
           <div className="search-results-dropdown">
           <SearchResultsDropDown 
@@ -47,6 +51,7 @@ const Navbar = ({refresh}) => {
           </div>
         }
       </div>
+
 
       <div className="acebook-logo">
         aceBook
