@@ -6,7 +6,7 @@ if (process.env.NODE_ENV === 'development') {
 } else {
 	BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 }
-
+// Request to backend api to login a user passing their email and password in body
 export const login = async (email, password) => {
 	const payload = {
 		email: email,
@@ -23,11 +23,10 @@ export const login = async (email, password) => {
 
 	const response = await fetch(`${BACKEND_URL}/tokens`, requestOptions);
 
-	// docs: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
 	if (response.status === 201) {
 		let data = await response.json();
-
 		return data;
+
 	} else {
 		const errorData = await response.json();
 		throw new Error(errorData.message || `Received status ${response.status} when signing up. Expected 201`
@@ -35,6 +34,7 @@ export const login = async (email, password) => {
 	}
 };
 
+// Request to backend api to signup a user passing their username, email, password and default profile image in body
 export const signup = async (username, email, password) => {
 	const payload = {
 		username: username,
@@ -53,7 +53,7 @@ export const signup = async (username, email, password) => {
 
 	let response = await fetch(`${BACKEND_URL}/users`, requestOptions);
 
-	// docs: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201
+
 	if (response.ok) {
 		return;
 	} else {

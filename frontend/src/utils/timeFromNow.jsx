@@ -1,3 +1,7 @@
+// Calculates the time difference between a given dateTime and the current date and time. 
+// Formats this difference into a string indicating how long ago the given date and time occurred.
+// e.g. a comment was made 2 hours ago
+
 export default function timeFromNow(dateTime) {
 
     const currentDate = new Date();

@@ -7,7 +7,8 @@ if (process.env.NODE_ENV === 'development') {
 	BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 }
 
-
+// Request to backend api returning the document for a specific user (username) from the users collection in the DB
+// Requires user authentication token (token) for authorization.
 export const getUser = async (token, username) => {
 	const requestOptions = {
 		method: "GET",
@@ -29,6 +30,7 @@ export const getUser = async (token, username) => {
 	return data;
 };
 
+// Request to backend api to search for users based on the provided search query (searchQuery)
 export const searchUsers = async (searchQuery) => {
 	const requestOptions = {
 		method: "GET",
@@ -53,6 +55,7 @@ export const searchUsers = async (searchQuery) => {
 	return data;
 };
 
+// Request to backend api updating profile image (imageURL) for a specific user (username)
 export const uploadImage = async (username, imageURL) => {
 	
 	const payload = {
@@ -64,8 +67,6 @@ export const uploadImage = async (username, imageURL) => {
 		headers: {"Content-Type": "application/json"},
 		body:  JSON.stringify(payload),
 	};
-
-	console.log("body formData", payload)
 
 	let response = await fetch(
 		`${BACKEND_URL}/users/${username}/upload`,
@@ -81,6 +82,7 @@ export const uploadImage = async (username, imageURL) => {
 	}
 };
 
+// Request to backend api updating the bio (bioText) for a specific user (username)
 export const editBio = async (bioText, username) => {
 	const payload = {
 		bio: bioText,
@@ -107,12 +109,9 @@ export const editBio = async (bioText, username) => {
 	}
 };
 
-export const addFriend = async (
-	receivingUserId,
-	requestingUserId,
-	username,
-	token
-) => {
+// Request to the backend api to add a user (receivingUserId) as a friend for a specific user(requestingUserId).
+// Requires user authentication token (token) for authorization.
+export const addFriend = async (receivingUserId, requestingUserId, username, token) => {
 	const payload = {
 		receivingUserId: receivingUserId,
 		requestingUserId: requestingUserId,
@@ -141,12 +140,9 @@ export const addFriend = async (
 	return data;
 };
 
-export const removeFriend = async (
-	receivingUserId,
-	requestingUserId,
-	username,
-	token
-) => {
+// Request to backend api removing a user (receivingUserId) as a friend from a specific user (requestingUserId).
+// Requires user authentication token (token) for authorization.
+export const removeFriend = async ( receivingUserId, requestingUserId, username, token) => {
 	const payload = {
 		receivingUserId: receivingUserId,
 		requestingUserId: requestingUserId,
@@ -175,12 +171,9 @@ export const removeFriend = async (
 	return data;
 };
 
-export const createNotification = async ({
-	username,
-	entity_userId,
-	token,
-	notificationType,
-}) => {
+// Request to backend api creates a notification for a specific user (entity_userId) indicating an event (notificationType) has occured by another user (username)
+// Requires user authentication token (token) for authorization.
+export const createNotification = async (username, entity_userId, token, notificationType) => {
 	let notificationMessage;
 
 	switch (notificationType) {
@@ -231,6 +224,8 @@ export const createNotification = async ({
 	return data;
 };
 
+// Request to backend api deleting a specific notification (notificationId) for a specific user (username)
+// Requires user authentication token (token) for authorization.
 export const deleteNotification = async (username, notificationId, token) => {
 	const payload = {
 		notificationId: notificationId,
