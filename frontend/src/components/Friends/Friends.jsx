@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
 import './Friends.css'
 
+// Component displays list of users friends.
+// Displays the friends image and username as clickable link to their profile page
 export default function Friends({ friends }) {
 
     return (

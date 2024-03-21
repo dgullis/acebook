@@ -4,24 +4,22 @@ import SearchResultsDropDown from "./SearchResultsDropDown"
 import "./SearchNavItem.css"
 
 export default function SearchNavItem( { handleSearch }) {
-    const [searchUserInput, setSearchUserInput] = useState("")
+    const [searchUserInput, setSearchUserInput] = useState("") // State to manage user input in search box
     const [token, setToken] = useState(window.localStorage.getItem("token"))
-    const [foundUsers, setFoundUsers] = useState([])
+    const [foundUsers, setFoundUsers] = useState([]) // State the manage list of users found during search
 
     const handleInputChange = (event) => {
-
         const inputValue = event.target.value;
-
-        setSearchUserInput(inputValue)
-        searchUsers(inputValue)
+        setSearchUserInput(inputValue) // Updates the search input value
+        searchUsers(inputValue) // Attempts to find users based on the current input value
             .then((data) => {
-                setFoundUsers(data.result)
-                handleSearch(data.result)
+                setFoundUsers(data.result) // Update the found users list
+                handleSearch(data.result) // Passes search results to function in navbar component
             })
             .catch((err) => {
                 console.error(err);
-                setFoundUsers([]);
-                handleSearch([]);
+                setFoundUsers([]); // Reset the found users list
+                handleSearch([]); // Pass an empty array to function in navbar component
             });
     }
 
@@ -38,9 +36,6 @@ export default function SearchNavItem( { handleSearch }) {
                 handleSearch(foundUsers)
             });
     }
-
-    if(!token) 
-        return;
 
     return (
         <>

@@ -1,17 +1,16 @@
 import './Notification.css'
-
 import { deleteNotification } from "../../services/user"
 
-
+// Component renders notification message and button to close and delete notification
 export default function Notification({username, notification, token, userPageRender}) {
 
-    
     const acknowledgeNotification = async() => {
         try {
+            // Attempts to delete notification
             const response = await deleteNotification(username, notification._id, token)
-            userPageRender()
+            userPageRender() // Triggers re render of user page
         } catch (error) {
-            console.log(error)
+            console.log(error) 
         }
     }
 

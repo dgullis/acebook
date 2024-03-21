@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
+// Component render button linking to homepage ("/")
 export default function HomeNavItem() {
     const navigate = useNavigate();
 

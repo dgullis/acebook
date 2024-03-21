@@ -5,10 +5,11 @@ import EditProfilePictureModal from "../EditProfilePictureModal/EditProfilePictu
 import EditBioModal from "../EditBioModal/EditBioModal";
 import User from "../User/User";
 
+// Component, modal displaying current user profile image and buttons to edit their profile image and bio
 export default function EditUserModal( {username, image, handleImageUpdate, handleBioUpdate, userPageRender, bio}) { 
-    const [modal, setModal] = useState(false)
-    const [editPictureModal, setEditPictureModal] = useState(false)
-    const [editBioModal, setEditBioModal] = useState(false)
+    const [modal, setModal] = useState(false) // State to manage modal visibility
+    const [editPictureModal, setEditPictureModal] = useState(false) // State to manage visibility of EditProfileImage modal
+    const [editBioModal, setEditBioModal] = useState(false) // State to manage visibility of EditBio modal
     
     const toggleModal = () => {
         setModal(!modal)

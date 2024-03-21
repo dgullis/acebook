@@ -1,4 +1,3 @@
-import { CSSProperties } from "react";
 import { ScaleLoader } from "react-spinners";
 
 const override = {
@@ -9,6 +8,7 @@ const override = {
     alignItems: "center",
 };
 
+// Component renders loading spinner
 const LoadingSpinner = ({ loading }) => {
 
     return (

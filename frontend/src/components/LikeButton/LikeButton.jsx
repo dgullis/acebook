@@ -1,22 +1,22 @@
-import { useState, useEffect } from "react";
 import { createNotification } from "../../services/user";
 import { likePost } from "../../services/posts";
 import "./LikeButton.css"
 
-
+// Component displays like button as a thumbs up icon.
+// Responsible for handling like / unlike of a post by current usewr
 const LikeButton = (props) => {
 
+    // Handles logic for click event for liking/unliking a post
 
     const handleClick = async () => {
         try {
-            await likePost(props.token, props.postId, props.userId);
-            props.setUserLikesPost((previousState) => !previousState);
-            props.handleLikeUnlike();
-            props.toggleStateChange && props.toggleStateChange()
-            props.userPageRender && props.userPageRender();
-            if (!props.userLikesPost) {
+            await likePost(props.token, props.postId, props.userId); // Attempts to update like status for post of current user
+            props.setUserLikesPost((previousState) => !previousState); // Toggles the state of whether the user likes the post or not
+            props.toggleStateChange && props.toggleStateChange() // Triggers re render of feed page
+            props.userPageRender && props.userPageRender(); // Triggers re render of user page
+            if (!props.userLikesPost) { // If user has liked the post
                 try {
-                    const notificationResult = await createNotification({
+                    const notificationResult = await createNotification({ // Attempt to create notification for post owner
                         username: props.loggedInUsername,
                         entity_userId: props.post_userId,
                         token: props.token,
@@ -24,12 +24,12 @@ const LikeButton = (props) => {
                     });
                 } catch (error) {
                     console.log(
-                        "An error occured while creating a notification"
+                        "An error occured while creating a notification" // Log error if unable to create notification
                     );
                 }
             } else {
-                try {
-                    const notificationResult = await createNotification({
+                try { // If user has un-liked the post
+                    const notificationResult = await createNotification({ // Attempt to create notification for post owner
                         username: props.loggedInUsername,
                         entity_userId: props.post_userId,
                         token: props.token,
@@ -37,7 +37,7 @@ const LikeButton = (props) => {
                     });
                 } catch (error) {
                     console.log(
-                        "An error occured while creating a notification"
+                        "An error occured while creating a notification" // Log error if unable to create notification
                     );
                 }
             }

@@ -2,7 +2,7 @@
 let BACKEND_URL;
 
 if (process.env.NODE_ENV === 'development') {
-	BACKEND_URL = 'http://localhost:3000'; 
+	BACKEND_URL = 'https://13.50.249.236'; 
 } else {
 	BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 }

@@ -21,27 +21,25 @@ export default function EditProfilePictureModal({image, username, toggleEditPict
             }
         
         // Creates a reference to the storage location for the image.
-        // Creates unique name for file using filename + a random UUID 
+        // Creates unique name for file using filename + a random UUID e.g. abcd1234
         const imageRef = ref(storage, `user-images/${file.name + v4()}`) 
         uploadBytes(imageRef, file)
         .then(() => {
             getDownloadURL(imageRef) // gets imageURL from firebase storage
                 .then((downloadURL) => {
-                    uploadImage(username, downloadURL) // Attempts to update profile image URL for user
+                    uploadImage(username, downloadURL) // Attempts to update profile imageURL for user
                         .then(res => res.json())
                         .then(data => {
-                            console.log(data.image)
-                            const user = JSON.parse(window.localStorage.getItem("user"))
-                            user.image = data.image
-                            window.localStorage.setItem("user", JSON.stringify(user));
-                            setFile(null)
-                            setErrorMessage('')
-                            toggleEditPictureModal()
-                            userPageRender()
+                            const user = JSON.parse(window.localStorage.getItem("user")) //Retrieves the user object from the local storage and parses it into a JavaScript object
+                            user.image = data.image //  Updates the image property of the user object with the new image URL received from the server response.
+                            window.localStorage.setItem("user", JSON.stringify(user)); // Updates the user object in the local storage with the modified image URL.
+                            setFile(null) // Clears file state
+                            setErrorMessage('') // Clears error message
+                            userPageRender() // Trigger re render of user page
+                            toggleEditPictureModal() // Closes modal
             });
-
-
                 })})
+            }
         
     
     const toggleModal = () => {

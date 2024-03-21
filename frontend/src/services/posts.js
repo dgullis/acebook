@@ -2,7 +2,7 @@
 let BACKEND_URL;
 
 if (process.env.NODE_ENV === 'development') {
-	BACKEND_URL = 'http://localhost:3000'; 
+	BACKEND_URL = 'https://13.50.249.236'; 
 } else {
 	BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 }
@@ -147,10 +147,9 @@ export const deleteThePost = async (postId, token) => {
 
 // Request to backend api indicating a specific user (userId) has liked a specific post (postId)
 // Requires user authentication token (token) for authorization.
-
 export const likePost = async (token, postId, userId) => {
     try {
-        const response = await fetch("http://localhost:3000/posts/likes", {
+        const response = await fetch(`${BACKEND_URL}/posts/likes`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

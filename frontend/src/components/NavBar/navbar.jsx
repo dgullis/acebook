@@ -11,20 +11,22 @@ import './SearchResultsDropDown.css'
 import UserNavItem from './UserNavItem';
 import './navbar.css'
 
-
+// Component renders a navbar
+// Items on the navbar are conditional based on if a user is currently logged in 
 const Navbar = ({refresh}) => {
     const [token, setToken] = useState(window.localStorage.getItem("token"))
     const [user, setUser] = useState(JSON.parse(window.localStorage.getItem("user")))
-    const [showSearchResults, setShowSearchResults] = useState(false)
-    const [foundUsers, setFoundUsers] = useState([])
+    const [showSearchResults, setShowSearchResults] = useState(false) // State variable to manage visibility of search results
+    const [foundUsers, setFoundUsers] = useState([]) // State variable to manage list of found users from search
 
+    // Update user state when refresh changes
     useEffect(() => {
       setUser(JSON.parse(window.localStorage.getItem("user")));
   }, [refresh]);
 
     const handleSearch = (searchResults) => {
-      setFoundUsers(searchResults)
-      setShowSearchResults(true) 
+      setFoundUsers(searchResults) // Sets state with results from search
+      setShowSearchResults(true) // Triggers to show search results drop down
     }
 
   return (
@@ -55,8 +57,8 @@ const Navbar = ({refresh}) => {
           <HomeNavItem />
         </div>
         
-        {token ? 
-
+         {/* If user logged in show items: logout, user image. otherwise show itemsL login, signup */}
+        {token ?
           <>
           <div className="logout-nav-item"> 
             <LogoutNavItem />

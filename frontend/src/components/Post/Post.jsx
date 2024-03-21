@@ -13,24 +13,20 @@ import { editPost } from "../../services/posts";
 const Post = (props) => {
     const [user, setUser] = useState(null);
     const [post, setPost] = useState(null)
-    const [like, setLike] = useState(false);
-    const [likes, setLikes] = useState(props.post.likes.length);
-    const [showCommentBox, setShowCommentBox] = useState(false);
     const [showMoreComments, setShowMoreComments] = useState(false);
-    const [hideComments, setHideComments] = useState(false);
-    const [deletes, setDeletes] = useState(false);
     const [postText, setPostText] = useState("")
     const [edittingPost, setEdittingPost] = useState(false)
     const [userLikesPost, setUserLikesPost] = useState(false)
     const [userIsOwner, setUserIsOwner] = useState(false)
 
-
+    // Effect hook to set user and post states
     useEffect(() => {
         setUser(JSON.parse(window.localStorage.getItem("user")))
         setPost(props.post)
         setPostText(props.post.message);  
 	}, [props.post]);
 
+    // Effect hook to determine if the current user is the owner of the post and if they currently like this post
     useEffect(() => {
         if (user) {
             setUserLikesPost(props.post.likes.includes(user._id));
@@ -39,36 +35,21 @@ const Post = (props) => {
     }, [user, props.post]);
 
 
-    const handleDelete = () => {
-        setDeletes(!deletes);
-    };
-
     const handleEditPost = () => {
-        setEdittingPost(!edittingPost)
+        setEdittingPost(!edittingPost) // Sets state to opposite of current
     }
 
-    const handleLikeUnlike = () => {
-        setLike(!like);
-        setLikes(props.post.likes.length);
-    };
-
-    const checkLikes = (props) => {
-        setLikes(props.post.likes.length);
-    };
-
-    const addCommentClick = () => {
-        setShowCommentBox(!showCommentBox);
-    };
-
+    // Function to handle showing all comments
     const showMoreCommentsClick = () => {
-        setShowMoreComments(true);
-        setHideComments(true);
+        setShowMoreComments(true);  // Sets state true
     };
 
+    // Function to handle hideing
     const hideCommentsClick = () => {
-        setShowMoreComments(false);
+        setShowMoreComments(false); // Sets state false
     };
 
+    // Function to handle editing text of existing post by post owner
     const handleSaveEditText = (event) => {
 		event.preventDefault();
 		const postData = {
@@ -76,7 +57,7 @@ const Post = (props) => {
 			postId: props.post._id,
 			postMessage: postText,
 		};
-		editPost(props.token, postData)
+		editPost(props.token, postData) // Attempts to update post text
 			.then(() => {
 				props.toggleStateChange();
                 props.userPageRender()
@@ -88,6 +69,7 @@ const Post = (props) => {
         handleEditPost() 
 	};
 
+    // Sort posts comments by createdAt timestamp and reverse for latest first
     const sortedComments = props.post.comments.sort(
         (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
     );
@@ -121,7 +103,6 @@ const Post = (props) => {
                             edittingPost={edittingPost}
                             postText={postText}
                             setPostText={setPostText}
-            
                         />
                     </div>
                         
@@ -139,9 +120,7 @@ const Post = (props) => {
                             <div className="like-button-container">
                             <LikeButton
                                 postId={props.post._id}
-                                like={like}
                                 setUserLikesPost={setUserLikesPost}
-                                handleLikeUnlike={handleLikeUnlike}
                                 token={props.token}
                                 toggleStateChange={props.toggleStateChange}
                                 userPageRender={props.userPageRender}
