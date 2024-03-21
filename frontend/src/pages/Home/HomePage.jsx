@@ -6,15 +6,14 @@ import { useNavigate } from "react-router-dom";
 import AboutModal from "../../components/AboutModal/AboutModal";
 
 export const HomePage = () => {
-    const [token, setToken] = useState(window.localStorage.getItem("token"));
+    const [token, setToken] = useState(window.localStorage.getItem("token")); // State to store authentication token
     const navigate = useNavigate();
 
     useEffect(() => {
         if (token) {
-            // console.log(token)
-            navigate("/posts");
+            navigate("/posts"); // Redirect to posts page if token is available
         }
-    }, [token, navigate]);
+    }, [token, navigate]); // Run effect when token changes or component mounts
 
     return (
         <>

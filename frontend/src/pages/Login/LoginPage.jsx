@@ -5,37 +5,38 @@ import Navbar from "../../components/NavBar/navbar";
 import "./LoginPage.css";
 
 export const LoginPage = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [notice, setNotice] = useState("")
+    const [email, setEmail] = useState(""); // State for storing email input
+    const [password, setPassword] = useState(""); // State for storing email input
+    const [notice, setNotice] = useState("") // State for displaying login notices
 
     const navigate = useNavigate();
 
+    // Function to handle form submission
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if(!email || !password) {
-            setNotice("Email or password not entered")
+        if(!email || !password) { // Check if email or password is empty
+            setNotice("Email or password not entered") // Set notice if email or password is empty
         } else {
             try {
-                const data = await login(email, password);
-                window.localStorage.setItem("token", data.token);
-                window.localStorage.setItem("user", JSON.stringify(data.user));
-                setNotice("Login successfull")
-                navigate("/posts");
+                const data = await login(email, password); // Attempt to log in with provided credentials
+                window.localStorage.setItem("token", data.token); // Store token in local storage
+                window.localStorage.setItem("user", JSON.stringify(data.user)); // Store user data in local storage
+                setNotice("Login successfull") // Set notice for successful login
+                navigate("/posts"); // Redirect to posts page after successful login
             } catch (err) {
-                console.error(err);
-                setNotice(err.message);
+                console.error(err); // Log error to console if login unsuccessfull
+                setNotice(err.message); // Set notice for failed login attempt
             }
         }
 
     };
 
     const handleEmailChange = (event) => {
-        setEmail(event.target.value);
+        setEmail(event.target.value); // Update email state with input value
     };
 
     const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
+        setPassword(event.target.value); // Update password state with input value
     };
 
     return (

@@ -18,32 +18,36 @@ export const FeedPage = () => {
 	const [stateChange, setStateChange] = useState(false);
 
 	const navigate = useNavigate();
-
+    
+    // Function to toggle stateChange to trigger re-render
 	const toggleStateChange = () => {
 		setStateChange(!stateChange);
 	};
 
+    // Effect hook to fetch posts when component mounts or stateChange is triggered
 	useEffect(() => {
 		if (token) {
-            setLoading(true)
+            setLoading(true) // Set loading status to true
+            // Fetch posts using authentication token
 			getPosts(token)
 				.then((data) => {
+                    // Sort posts by createdAt timestamp and reverse for latest first
 					const sortedPosts = data.posts.sort(
 						(a, b) => new Date(a.createdAt) - new Date(b.createdAt)
 					);
-					setPosts(sortedPosts.reverse());
-					setToken(data.token);
-					window.localStorage.setItem("token", data.token);
-                    setLoading(false)
+					setPosts(sortedPosts.reverse()); // Update posts state with fetched posts
+					setToken(data.token); // Update token state with new token
+					window.localStorage.setItem("token", data.token); // Store token in local storage
+                    setLoading(false) // Set loading status to false
 
 				})
 				.catch((err) => {
-					console.err(err);
-                    setLoading(false)
+					console.err(err); // Log error if fetching posts fails
+                    setLoading(false) // Set loading status to false
 
 				});
 		} else {
-			navigate("/login");
+			navigate("/login"); // Redirect to login page if token is not available
 		}
 	}, [stateChange]);
 

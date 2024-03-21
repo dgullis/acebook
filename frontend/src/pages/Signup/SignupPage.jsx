@@ -5,33 +5,33 @@ import Navbar from "../../components/NavBar/navbar";
 import "./SignupPage.css";
 
 export const SignupPage = () => {
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [notice, setNotice] = useState("")
+    const [username, setUsername] = useState(""); // State for storing username input
+    const [email, setEmail] = useState(""); // State for storing email input
+    const [password, setPassword] = useState(""); // State for storing password input
+    const [notice, setNotice] = useState(""); // State for displaying signup notices
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await signup(username, email, password);
-            setNotice("Signup sucessfull")
-            navigate("/login");
+            await signup(username, email, password); // Attempt to sign up with provided credentials
+            setNotice("Signup sucessfull") // Set notice for successful signup
+            navigate("/login"); // Redirect to login page after successful signup
         } catch (err) {
-            setNotice(err.message);
+            setNotice(err.message); // Set notice for failed signup attempt
         }
     };
 
     const handleUsernameChange = (event) => {
-        setUsername(event.target.value);
+        setUsername(event.target.value);  // Update username state with input value
     };
 
     const handleEmailChange = (event) => {
-        setEmail(event.target.value);
+        setEmail(event.target.value); // Update email state with input value
     };
 
     const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
+        setPassword(event.target.value); // Update password state with input value
     };
 
     return (
