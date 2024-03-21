@@ -1,10 +1,11 @@
 import { useState } from "react"
 import "./AboutModal.css"
 
+// Modal displaying information about the projects including names of collaborators and their github profile links
 export default function AboutModal() {
-    const [showModal, setShowModal] = useState(false);
+    const [showModal, setShowModal] = useState(false); // State for managing modal visibility
 
-
+    // Function to toggle modal visibility
     const toggleModal = () => {
         setShowModal(!showModal)
     }
@@ -17,6 +18,7 @@ export default function AboutModal() {
             </button>
         </div>
 
+        {/* Conditional rendering of modal based on state */}
         {showModal && 
         <div className="modal">
             <div className="overlay" onClick={toggleModal}>
@@ -25,18 +27,16 @@ export default function AboutModal() {
                     This was a two-week, small group project, to create a
                     facebook clone from a skeleton legacy codebase. <br /><br />
                     Contact Dan Gullis for more information
-                <ul>
-                    <li>Dan Gullis - <a href="https://github.com/dgullis" target="_blank" rel="noopener noreferrer" className="custom-link">@dgullis</a></li>
-                    <li>Simon Budden - <a href="https://github.com/fantastito" target="_blank" rel="noopener noreferrer" className="custom-link">@fantastito</a></li>
-                    <li>Ed Gemmill - <a href="https://github.com/EdGemmill" target="_blank" rel="noopener noreferrer" className="custom-link">@EdGemmill</a></li>
-                    <li>Nick Torkington - <a href="https://github.com/N1ckT0rk" target="_blank" rel="noopener noreferrer" className="custom-link">@N1ckT0rk</a></li>
-                    <li>Thomas Powell - <a href="https://github.com/Tomtommx8" target="_blank" rel="noopener noreferrer" className="custom-link">@Tomtommx8</a></li>
-                </ul>
-
-                
-                <button className="close-about-modal-button" onClick={toggleModal}>
-                    Close
-                </button>
+                    <ul>
+                        <li>Dan Gullis - <a href="https://github.com/dgullis" target="_blank" rel="noopener noreferrer" className="custom-link">@dgullis</a></li>
+                        <li>Simon Budden - <a href="https://github.com/fantastito" target="_blank" rel="noopener noreferrer" className="custom-link">@fantastito</a></li>
+                        <li>Ed Gemmill - <a href="https://github.com/EdGemmill" target="_blank" rel="noopener noreferrer" className="custom-link">@EdGemmill</a></li>
+                        <li>Nick Torkington - <a href="https://github.com/N1ckT0rk" target="_blank" rel="noopener noreferrer" className="custom-link">@N1ckT0rk</a></li>
+                        <li>Thomas Powell - <a href="https://github.com/Tomtommx8" target="_blank" rel="noopener noreferrer" className="custom-link">@Tomtommx8</a></li>
+                    </ul>
+                    <button className="close-about-modal-button" onClick={toggleModal}> {/* Button to close the modal */}
+                        Close
+                    </button>
                 </div>
             </div>
         </div>

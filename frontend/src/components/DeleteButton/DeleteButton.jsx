@@ -4,27 +4,28 @@ import ConfirmDeleteModal from './ConfirmDeleteModal';
 import { useState } from 'react';
 import { deleteThePost } from '../../services/posts';
 
+// Component renders a delete button and handles deletion of post after triggering a modal asking user to confirm delete action
 const DeleteButton = (props) => {
-    const [confirmDeleteModal, setConfirmDeleteModal] = useState(false);
+    const [confirmDeleteModal, setConfirmDeleteModal] = useState(false); // State to track visibility of the confirmation modal
     
     const handleDeletePostTrue = async () => {
         try {
-            const result = await deleteThePost(props.postID, props.token);
-            setConfirmDeleteModal(false);
-            props.toggleStateChange && props.toggleStateChange()
-            props.userPageRender && props.userPageRender()
+            const result = await deleteThePost(props.postID, props.token); // Attempt to delete the post
+            setConfirmDeleteModal(false); // Close the confirmation modal after deletion
+            props.toggleStateChange && props.toggleStateChange() // Trigger state change of feedpage
+            props.userPageRender && props.userPageRender() // Trigger state change of user page
 		} catch (error) {
-			console.error("Error deleting post:", error);
+			console.error("Error deleting post:", error); // Log error if deletion fails
 		}
 	};
 
 
     const handleDeletePost = () => {
-        setConfirmDeleteModal(true)
+        setConfirmDeleteModal(true) // Show the confirmation modal
     }
 
     const handleDeletePostFalse = () => {
-        setConfirmDeleteModal(false)
+        setConfirmDeleteModal(false) // Hide the confirmation modal
     }
 
     return props.showButton ? (

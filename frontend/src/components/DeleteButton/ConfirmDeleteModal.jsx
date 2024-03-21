@@ -1,8 +1,8 @@
 import './ConfirmDeleteModal.css'
 
+// Modal to display when user clicks delete post asking them to confirm or deny the action
 export default function ConfirmDeleteModal({ handleDeletePostTrue, handleDeletePostFalse }) {
 
-    
     return (
 
         <div className="confirm-delete-modal">
