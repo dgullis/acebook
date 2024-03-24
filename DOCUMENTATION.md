@@ -54,7 +54,6 @@ VITE_FB_STORAGE_BUCKET
 VITE_MESSAGING_SENDER_ID
 VITE_APP_ID
 ```
-Values will be provided by the production team
 
 Create a file api/.env with the following environment variables:
 
@@ -64,6 +63,7 @@ NODE_ENV
 JWT_SECRET
 ```
 Values will be provided by the production team.
+
 Once environment variables are set you can run the app locally.
 
 How to run the server and use the app
@@ -81,10 +81,10 @@ In a new terminal session...
 
 ```
 cd frontend
-; npm run dev
+npm run dev
 ```
 
-You should now be able to open your browser and go to http://localhost:3000/
+You should now be able to open your browser and go to http://localhost:5173/ to see the homepage
 
 
 ### Architecture
@@ -97,11 +97,11 @@ A frontend built with React
 
 The only way the frontend can communicate with the API is through HTTP requests over the network. The React front end sends HTTP requests to the backend API and receives JSON responses.
 
-### Front-end Structure
+### Frontend Structure
 
 main.jsx
 
-This file which joins the initial HTML document with the React application. 
+This file joins the initial HTML document with the React application. 
 
 App.jsx
 
@@ -123,14 +123,14 @@ Assets
 
 Assets are static, non-code resources, such as images.
 
-### Back-end Structure
+### Backend Structure
 
 index.js
 
 This file starts our server. It does two things:
 
-1. Connect to the mongodb database.
-2. Start our app, listening for incoming HTTP requests.
+1. Connects to the mongodb database.
+2. Starts our app, listening for incoming HTTP requests.
 
 app.js
 
