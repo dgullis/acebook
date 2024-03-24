@@ -1,9 +1,11 @@
-import React from 'react';
-import {render, screen} from '@testing-library/react'
-import {BrowserRouter, MemoryRouter} from 'react-router-dom'
+import React from 'react'
 import '@testing-library/jest-dom'
+import {render, screen, fireEvent} from '@testing-library/react'
+import {BrowserRouter, MemoryRouter} from 'react-router-dom'
+import userEvent from '@testing-library/user-event'
 import {within} from '@testing-library/dom'
-import Navbar from '../../src/components/NavBar/navbar.jsx';
+import Navbar from '../../../src/components/NavBar/navbar.jsx';
+import App from '../../../src/App.jsx'
 
 
 test('renders navbar with correct items when no user logged in', () => {
@@ -35,6 +37,8 @@ test('renders navbar with correct items when user logged in', () => {
   window.localStorage.removeItem("token");
   window.localStorage.removeItem("user");
 });
+
+
 
 
 

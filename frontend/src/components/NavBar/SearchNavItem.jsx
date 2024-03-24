@@ -6,7 +6,7 @@ import "./SearchNavItem.css"
 export default function SearchNavItem( { handleSearch }) {
     const [searchUserInput, setSearchUserInput] = useState("") // State to manage user input in search box
     const [token, setToken] = useState(window.localStorage.getItem("token"))
-    const [foundUsers, setFoundUsers] = useState([]) // State the manage list of users found during search
+    const [foundUsers, setFoundUsers] = useState([]) // State to manage list of users found during search
 
     const handleInputChange = (event) => {
         const inputValue = event.target.value;
