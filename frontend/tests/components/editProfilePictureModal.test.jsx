@@ -8,7 +8,7 @@ import { waitFor } from '@testing-library/react'
 import { vi } from 'vitest'
 import EditProfilePictureModal from '../../src/components/EditProfilePictureModal/EditProfilePictureModal'
 import { v4 } from 'uuid';
-import * as userService from '../../src/services/user';
+import { uploadImage } from '../../src/services/user'
 
 
 
@@ -35,6 +35,11 @@ describe('EditProfilePictureModal component', () => {
         };
     });
 
+    vi.mock('../../src/services/user', () => ({
+        uploadImage: vi.fn()
+    }))
+
+
     it('renders correctly', () => {
         render(<EditProfilePictureModal toggleEditPictureModal={true} image={'mockImageURL'} username={'mockUser'}/>, {wrapper: BrowserRouter})
         expect(screen.queryByText('Choose image')).toBeInTheDocument()
@@ -45,10 +50,8 @@ describe('EditProfilePictureModal component', () => {
     //     window.localStorage.setItem("token", "mockToken");
     //     window.localStorage.setItem("user", JSON.stringify({ username: "mockUser" }));
 
-    //     const uploadImageMock = vi.fn().mockResolvedValue({ 
-    //         json: vi.fn().mockResolvedValue({ image: 'mocked-image-url' }) 
-    //     });
-    //     vi.spyOn(userService, 'uploadImage').mockImplementation(uploadImageMock);
+
+    //     uploadImage.mockResolvedValueOnce({json: vi.fn().mockResolvedValue({ image: 'mocked-image-url' }) })
 
     //     const handleFileChange = vi.fn();
         
@@ -65,7 +68,7 @@ describe('EditProfilePictureModal component', () => {
     //         fireEvent.change(fileInput, { target: { files: [file] } });
     //         expect(handleFileChange).toHaveBeenCalledTimes(1);
     //     });
-       
+
         
     // })
 
