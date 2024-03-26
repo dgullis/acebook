@@ -25,8 +25,7 @@ describe('AddComment component', () => {
     
     it('updates comment text when a user types', async () => {
         window.localStorage.setItem("token", "mockToken");
-        window.localStorage.setItem("user", JSON.stringify({ username: "mockUser" }));
-        
+v        
         render (<AddComment />, {wrapper: BrowserRouter})
         const user = userEvent.setup()
     
@@ -37,7 +36,6 @@ describe('AddComment component', () => {
             expect(commentTextArea.value).toBe('new comment');
         });
     
-     
     
     });
 

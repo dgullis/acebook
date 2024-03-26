@@ -46,6 +46,6 @@ describe('Notification component', () => {
         render(<Notification {...props}/>, {wrapper: BrowserRouter})
         await userEvent.click(screen.getByRole('button', {name: 'x'}))
         expect(deleteNotification).toHaveBeenCalledTimes(1)
-        
+
     })
 })
