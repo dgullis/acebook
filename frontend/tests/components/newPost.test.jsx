@@ -8,21 +8,6 @@ import NewPost from '../../src/components/Post/NewPost'
 
 describe("NewPost component", () => {
     
-
-    // it('test', () => {
-    //     const props = {
-    //         token: 'mockToken',
-    //         userId: '123',
-    //         toggleStateChange: () => {},
-    //         userImg: 'mockImageURL'
-    //     }
-
-    //     const { container } = render(<NewPost {...props} />, { wrapper: BrowserRouter });
-    //     console.log(container.innerHTML);
-
-    // })
-
-
     it('renders correctly', () => {
 
         const props = {

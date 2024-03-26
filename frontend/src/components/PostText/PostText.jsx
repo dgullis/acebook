@@ -13,7 +13,6 @@ export default function PostText(props){
             textarea.style.height = 'auto';
             textarea.style.height = `${textarea.scrollHeight}px`; 
         }
-    
     },[props.postText])
 
     return (
