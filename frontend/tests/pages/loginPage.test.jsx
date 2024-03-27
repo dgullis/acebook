@@ -21,7 +21,6 @@ vi.mock("react-router-dom", async () => {
   }
 });
 
-
 // Mocking the login service
 vi.mock("../../src/services/authentication", () => {
   const loginMock = vi.fn();
@@ -32,54 +31,55 @@ vi.mock("../../src/services/authentication", () => {
 const completeLoginForm = async () => {
   const user = userEvent.setup();
 
-  const emailInputEl = screen.getByLabelText("email");
-  const passwordInputEl = screen.getByLabelText("password");
-  const submitButtonEl = screen.getByRole('button', {name: 'Log In'});
+  const emailInputEl = screen.getByPlaceholderText("Email")
+  const passwordInputEl = screen.getByPlaceholderText("Password");
+  const submitButtonEl = screen.getByRole('submit-button');
 
   await user.type(emailInputEl, "test@email.com");
-  await user.type(passwordInputEl, "1234");
+  await user.type(passwordInputEl, "Passw0rd123!T");
   await user.click(submitButtonEl);
 };
 
 describe("Login Page", () => {
-  // beforeEach(() => {
-  //   vi.resetAllMocks();
-  // });
+
 
   it('renders correctly', () => {
     render(<LoginPage />)
-    console.log(document.body.innerHTML)
-    const emailInputEl = screen.getByLabelText("email")
+    const emailInputEl = screen.getByPlaceholderText("Email")
+    const passwordInputEl = screen.getByPlaceholderText("Password");
+    const submitButtonEl = screen.getByRole('submit-button');
+
     expect(emailInputEl).toBeInTheDocument()
+    expect(passwordInputEl).toBeInTheDocument()
+    expect(submitButtonEl).toBeInTheDocument()
+
   })
 
-  // it("allows a user to login", async () => {
-  //   render(<LoginPage />);
+  it('directs to the feedpage after successful login', async () => {
+    login.mockResolvedValueOnce({token: 'mockToken', user: {username:'mockUser'}})
+    render(<LoginPage/>, {wrapper: BrowserRouter})
+    await completeLoginForm()
+    const navigateMock = useNavigate();
+    expect(navigateMock).toHaveBeenCalledWith("/posts")
+    window.localStorage.removeItem("token");
+    window.localStorage.removeItem("user");
 
-  //   await completeLoginForm();
+  });
 
-  //   expect(login).toHaveBeenCalledWith("test@email.com", "1234");
-  // });
+  it('displays error message Email or password not entered if both inputs empty', async () => {
+    render(<LoginPage/>, {wrapper: BrowserRouter})
+    await userEvent.click(screen.getByRole('submit-button'))
+    expect(screen.getByText('Email or password not entered')).toBeInTheDocument()
+  })
 
-  // it("navigates to /posts on successful login", async () => {
-  //   render(<LoginPage />);
+  it('displays error message if login fails', async () => {
+    login.mockRejectedValueOnce(new Error('user not found'))
+    render(<LoginPage/>, {wrapper: BrowserRouter})
+    await completeLoginForm()
+    expect(screen.getByText('user not found')).toBeInTheDocument()
+  })
 
-  //   login.mockResolvedValue("secrettoken123");
-  //   const navigateMock = useNavigate();
 
-  //   await completeLoginForm();
+  
+  })
 
-  //   expect(navigateMock).toHaveBeenCalledWith("/posts");
-  // });
-
-  // it("navigates to /login on unsuccessful login", async () => {
-  //   render(<LoginPage />);
-
-  //   login.mockRejectedValue(new Error("Error logging in"));
-  //   const navigateMock = useNavigate();
-
-  //   await completeLoginForm();
-
-  //   expect(navigateMock).toHaveBeenCalledWith("/login");
-  // });
-});
