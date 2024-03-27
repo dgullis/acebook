@@ -1,40 +1,45 @@
-import { render, screen } from "@testing-library/react";
+import { expect, describe, it} from 'vitest'
+import { render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { HomePage } from "../../src/pages/Home/HomePage";
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom'
 
 
 describe("Home Page", () => {
-  test("welcomes you to the site", () => {
+  it("renders correctly", () => {
     // We need the Browser Router so that the Link elements load correctly
-    render(
-      <BrowserRouter>
-        <HomePage />
-      </BrowserRouter>
-    );
+    render(<HomePage />, {wrapper: BrowserRouter})
 
-    expect(screen.getByRole('heading', {name: /welcome to acebook!/i})).toBeInTheDocument()
+    const aceBook = (screen.getAllByText('aceBook'))
+    expect(aceBook).toHaveLength(2)
+    const signUpButtons =screen.getAllByRole('button', {name: 'Sign up'})
+    expect(signUpButtons).toHaveLength(2)
+    const logInButtons =screen.getAllByRole('button', {name: 'Log in'})
+    expect(logInButtons).toHaveLength(2)
+    expect(screen.getByRole('button', {name: 'About aceBook'})).toBeInTheDocument()
+    expect(screen.getByRole('button', {name: 'Home'})).toBeInTheDocument()
+    expect(screen.getByText(/aceBook is a project completed on the Makers Academy software development bootcamp./i)).toBeInTheDocument()
+
   });
 
-  test("Displays a signup link", async () => {
-    render(
-      <BrowserRouter>
-        <HomePage />
-      </BrowserRouter>
-    );
+  it('navigates to sign up page after clicking the button', async() => {
+    render(<HomePage />, {wrapper: BrowserRouter})
+    const signUpButtons = screen.getAllByRole('button', {name: 'Sign up'})
+    await userEvent.click(signUpButtons[0])
+    await waitFor(() => {
+      expect(window.location.pathname).toBe('/signup');
+    })
 
-    const signupLink = screen.getByText("Sign Up");
-    expect(signupLink.getAttribute("href")).toEqual("/signup");
-  });
+  })
 
-  test("Displays a login link", async () => {
-    render(
-      <BrowserRouter>
-        <HomePage />
-      </BrowserRouter>
-    );
+  it('navigates to log in page after clicking the button', async() => {
+    render(<HomePage />, {wrapper: BrowserRouter})
+    const logInButtons = screen.getAllByRole('button', {name: 'Log in'})
+    await userEvent.click(logInButtons[0])
+    await waitFor(() => {
+      expect(window.location.pathname).toBe('/login');
+    })
+  })
 
-    const loginLink = screen.getByText("Log In");
-    expect(loginLink.getAttribute("href")).toEqual("/login");
-  });
-});
+})
