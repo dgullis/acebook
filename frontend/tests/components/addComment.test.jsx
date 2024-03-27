@@ -24,8 +24,7 @@ describe('AddComment component', () => {
         expect(commentTextArea.placeholder).toBe('make a new comment');    })
     
     it('updates comment text when a user types', async () => {
-        window.localStorage.setItem("token", "mockToken");
-v        
+        window.localStorage.setItem("token", "mockToken");       
         render (<AddComment />, {wrapper: BrowserRouter})
         const user = userEvent.setup()
     
