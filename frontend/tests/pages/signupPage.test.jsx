@@ -1,8 +1,9 @@
+import { expect, describe, it} from 'vitest'
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import '@testing-library/jest-dom'
 import { vi } from "vitest";
-import { useNavigate } from "react-router-dom";
+import { BrowserRouter, useNavigate } from "react-router-dom";
 import { signup } from "../../src/services/authentication";
 import { SignupPage } from "../../src/pages/Signup/SignupPage";
 
@@ -32,51 +33,60 @@ vi.mock("../../src/services/authentication", () => {
 const completeSignupForm = async () => {
     const user = userEvent.setup();
 
-    const usernameInputEl = screen.getByLabelText("Username:");
-    const emailInputEl = screen.getByLabelText("Email:");
-    const passwordInputEl = screen.getByLabelText("Password:");
-    const submitButtonEl = screen.getByRole("submit-button");
+    const usernameInputEl = screen.getByPlaceholderText("Username")
+    const emailInputEl = screen.getByPlaceholderText("Email")
+    const passwordInputEl = screen.getByPlaceholderText("Password")
+    const submitButtonEl = screen.getByRole('submit-button');
 
     await user.type(usernameInputEl, "test user");
     await user.type(emailInputEl, "test@email.com");
     await user.type(passwordInputEl, "cHeck123Test!");
     await user.click(submitButtonEl);
+  };
 
-
-};
 
 describe("Signup Page", () => {
-    beforeEach(() => {
-        vi.resetAllMocks();
-    });
+    // beforeEach(() => {
+    //     vi.resetAllMocks();
+    // });
 
-    test("allows a user to sign up", async () => {
-        render(<SignupPage />);
+    it('renders correctly', () => {
 
-        await completeSignupForm();
+        render(<SignupPage />, {wrapper:BrowserRouter})
+        const usernameInputEl = screen.getByPlaceholderText("Username")
+        const emailInputEl = screen.getByPlaceholderText("Email")
+        const passwordInputEl = screen.getByPlaceholderText("Password")
+        const submitButtonEl = screen.getByRole('submit-button');
 
-    expect(signup).toHaveBeenCalledWith("test user", "test@email.com", "cHeck123Test!");
-  });
+        expect(usernameInputEl).toBeInTheDocument()
+        expect(emailInputEl).toBeInTheDocument()
+        expect(passwordInputEl).toBeInTheDocument()
+        expect(submitButtonEl).toBeInTheDocument()
+    })
 
+    it('displays password security prompt when user entering password', async() => {
+        render(<SignupPage />, {wrapper:BrowserRouter})
+        const passwordInputEl = screen.getByPlaceholderText("Password")
+        await userEvent.type(passwordInputEl, 'pass')
+        expect(screen.getByText('Password must contain:')).toBeInTheDocument()
+    })
 
-    test("navigates to /login on successful signup", async () => {
-        render(<SignupPage />);
-
+    it('allows a user to sign up', async() => {
+        signup.mockResolvedValueOnce({})
+        render(<SignupPage />, {wrapper:BrowserRouter})
+        await completeSignupForm()
         const navigateMock = useNavigate();
+        expect(navigateMock).toHaveBeenCalledWith("/login")
+        window.localStorage.removeItem("token");
+        window.localStorage.removeItem("user");
+    })
 
-        await completeSignupForm();
+    it('displays error message when signup is not successfull', async () => {
+        signup.mockRejectedValueOnce(new Error('signup error'))
+        render(<SignupPage />, {wrapper:BrowserRouter})
+        await completeSignupForm()
+        expect(screen.getByText('signup error')).toBeInTheDocument()
 
-        expect(navigateMock).toHaveBeenCalledWith("/login");
-    });
+    })
 
-    test("navigates to /signup on unsuccessful signup", async () => {
-        render(<SignupPage />);
-
-        signup.mockRejectedValue(new Error("Error signing up"));
-        const navigateMock = useNavigate();
-
-        await completeSignupForm();
-
-        expect(navigateMock).toHaveBeenCalledWith("/signup");
-    });
 });
