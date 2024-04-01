@@ -1,4 +1,4 @@
-# Content
+# Contents
 - [Installation Instructions](#Installation-Instructions)
 - [Architecture](#Architecture)
 - [Frontend Structure](#Frontend-Structure)
