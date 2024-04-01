@@ -1,8 +1,8 @@
 # Content
 - [Installation Instructions](#Installation-Instructions)
 - [Architecture](#Architecture)
-- [Front-end Structure](#Front-end-Structure)
-- [Back-end Structure](#Back-end-Structure)
+- [Frontend Structure](#Front-end-Structure)
+- [Backend Structure](#Back-end-Structure)
 - [Authentication](#Authentication)
 - [Technologies](#Technologies)
 
