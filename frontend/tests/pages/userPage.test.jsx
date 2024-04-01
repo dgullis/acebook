@@ -2,7 +2,6 @@
 import { render, screen } from "@testing-library/react";
 import { vi } from "vitest";
 import { useNavigate, useParams } from "react-router-dom";
-
 import { UserPage } from "../../src/pages/User/UserPage";
 import { describe } from "vitest";
 import { getUser } from "../../src/services/user";

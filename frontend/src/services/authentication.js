@@ -54,8 +54,9 @@ export const signup = async (username, email, password) => {
 	let response = await fetch(`${BACKEND_URL}/users`, requestOptions);
 
 
-	if (response.ok) {
-		return;
+	if (response.status == 201) {
+		let data = await response.json();
+		return data;
 	} else {
 		const errorData = await response.json();
 		throw new Error(errorData.message || `Received status ${response.status} when signing up. Expected 201`
