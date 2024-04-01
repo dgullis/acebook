@@ -188,6 +188,7 @@ If the passwords match, a JSON Web Token is generated and returned, as part of t
 The React frontend receives the token and holds on to it.
 When the user logs out, the front end discards the token.
 
+
 ###  Technologies
 
 - MongoDB - database
