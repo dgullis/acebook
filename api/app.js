@@ -8,6 +8,9 @@ const authenticationRouter = require("./routes/authentication");
 const tokenChecker = require("./middleware/tokenChecker");
 
 const app = express();
+// const fs = require('fs')
+
+// const file = fs.readFileSync('/home/ec2-user/acebook/api/314DA824F1248BB8B24D8282B1AFD014.txt')
 
 // Allow requests from any client
 // docs: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
@@ -21,6 +24,15 @@ app.use(bodyParser.json());
 app.use("/users", usersRouter);
 app.use("/posts", tokenChecker, postsRouter);
 app.use("/tokens", authenticationRouter);
+
+// Test Route
+app.get("/test", (req, res) => {
+  res.send("<h1>Working</h1>");
+});
+
+// app.get("/.well-known/pki-validation/314DA824F1248BB8B24D8282B1AFD014.txt", (req, res) => {
+// res.sendFile("/home/ec2-user/acebook/api/314DA824F1248BB8B24D8282B1AFD014.txt")
+// })
 
 // 404 Handler
 app.use((_req, res) => {
