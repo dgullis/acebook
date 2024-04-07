@@ -1,16 +1,14 @@
-version: 0.0
+version: 0
 os: linux
 files:
-  - source: /
+  - source: api/
     destination: /home/ec2-user/acebook/api
 hooks:
-# Install:
   AfterInstall:
-    - location: scripts/after_install.sh
+    - location: tmp/scripts/after_install.sh
       timeout: 300
-      runas: root
+      runas: ec2-user
   ApplicationStart:
-    - location: scripts/application_start.sh
+    - location: tmp/scripts/application_start.sh
       timeout: 300
-      runas: root
-# ValidateService:
+      runas: ec2-user
