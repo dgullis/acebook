@@ -5,10 +5,10 @@ files:
     destination: /home/ec2-user/acebook/api
 hooks:
   AfterInstall:
-    - location: tmp/scripts/after_install.sh
+    - location: api/tmp/scripts/after_install.sh
       timeout: 300
       runas: ec2-user
   ApplicationStart:
-    - location: tmp/scripts/application_start.sh
+    - location: api/tmp/scripts/application_start.sh
       timeout: 300
       runas: ec2-user
