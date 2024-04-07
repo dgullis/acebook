@@ -27,7 +27,7 @@ app.use("/tokens", authenticationRouter);
 
 // Test Route
 app.get("/test", (req, res) => {
-  res.send("<h1>Working!!!?!</h1>");
+  res.send("<h1>Now Working</h1>");
 });
 
 // app.get("/.well-known/pki-validation/314DA824F1248BB8B24D8282B1AFD014.txt", (req, res) => {
