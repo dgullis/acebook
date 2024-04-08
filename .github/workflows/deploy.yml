@@ -43,7 +43,7 @@ jobs:
         id: deploy
         run: |
           aws deploy create-deployment \
-          --application-name acebook-server \ 
+          --application-name acebook-server \
           --deployment-group-name acebook-server \
           --deployment-config-name CodeDeployDefault.OneAtATime \
           --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
