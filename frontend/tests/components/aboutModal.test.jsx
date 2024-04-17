@@ -27,6 +27,8 @@ test('clicking close button closes modal', async () => {
 
     await user.click(screen.getByRole('button', {name: 'Close'}))
 
+    await expect(screen.queryByText(/Completed during the/)).not.toBeInTheDocument()
+
     await expect(screen.getByRole('button', {name: /About aceBook/i})).toBeInTheDocument()
 
 
